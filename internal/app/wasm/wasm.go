@@ -12,7 +12,7 @@ import (
 	"syscall/js"
 	"time"
 
-	"github.com/goware/urlx"
+	"github.com/gjbae1212/hit-counter/pkg/urlx"
 )
 
 var (

@@ -3,7 +3,7 @@ package url
 import (
 	"fmt"
 
-	"github.com/goware/urlx"
+	"github.com/gjbae1212/hit-counter/pkg/urlx"
 	perrors "github.com/pkg/errors"
 )
 
