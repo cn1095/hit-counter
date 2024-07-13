@@ -1,4 +1,4 @@
-package server
+package config
 
 import (
 	"sync"
@@ -17,7 +17,7 @@ type LocalEnvironments struct {
 	Debug      bool                        `env:"DEBUG,notEmpty"`
 	Phase      internalstring.TrimString   `env:"PHASE,notEmpty"`
 	SentryDSN  internalstring.TrimString   `env:"SENTRY_DSN,notEmpty"`
-	ForceHttps bool                        `env:"FORCE_HTTPS,notEmpty"`
+	ForceHTTPS bool                        `env:"FORCE_HTTPS,notEmpty"`
 	RedisAddr  []internalstring.TrimString `env:"REDIS_ADDRS,notEmpty" envSeparator:","`
 }
 

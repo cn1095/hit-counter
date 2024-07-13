@@ -67,7 +67,7 @@ func DailyStringToTime(s string) time.Time {
 	return t
 }
 
-// TimeToDailyStringFormat converts time to string formatted daily layout
+// TimeToDailyStringFormat converts time to string formatted daily layout.
 func TimeToDailyStringFormat(t time.Time) string {
 	return t.Format(dailyLayout)
 }
@@ -81,7 +81,7 @@ func HourlyStringToTime(s string) time.Time {
 	return t
 }
 
-// TimeToHourlyStringFormat converts time to string formatted hourly layout
+// TimeToHourlyStringFormat converts time to string formatted hourly layout.
 func TimeToHourlyStringFormat(t time.Time) string {
 	return t.Format(hourlyLayout)
 }
