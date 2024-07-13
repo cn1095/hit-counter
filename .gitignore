@@ -1,10 +1,15 @@
+# editor
 .idea
-/vendor
-hit-counter
-coverage.txt
-debug
-packrd
-script/build_env.sh
-script/production.yaml
-production.yaml
-/logs
+.vscode
+
+# temp
+tmp
+
+# trash
+.DS_Store
+
+# etc
+vendor
+!.gitkeep
+
+

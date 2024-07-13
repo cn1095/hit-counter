@@ -19,29 +19,29 @@ The badge includes per day (from GMT) and the total (all) page count.
 
 [HITS](https://hits.seeyoufarm.com) also shows the GitHub projects with the highest visitors. (TOP 10)
 
-[HITS](https://hits.seeyoufarm.com) shows real-time page hits (using Websocket) of every project  or site that is using this service. 
+[HITS](https://hits.seeyoufarm.com) shows real-time page hits (using Websocket) of every project  or site that is using this service.
 
 [HITS](https://hits.seeyoufarm.com) was made by gjbae1212@gmail.com using Golang, WebAssembly (Wasm), HTML, currently serving from Google Cloud platform.
- 
+
 ## How To Use
-### How To Generate The Badge 
+### How To Generate The Badge
 You generate the badge through [HITS](https://hits.seeyoufarm.com/#badge).
 
 ![Hits](https://storage.googleapis.com/hit-counter/gen.png)
 
 ## Features
-- Displays daily and total page views on your page.  
+- Displays daily and total page views on your page.
 - Support badge with customize style.
-- Support badge free icon (https://simpleicons.org). 
+- Support badge free icon (https://simpleicons.org).
 - Show a graph of your site about daily count of histories in recently 6 month.
 - Show ranks about github projects.
 - Show real-time stream.
-      
+
 ## ETC
 [HITS](https://hits.seeyoufarm.com) counts every page hit without storing sensitive information (IP, headers, etc.).  
 To protect from abuse by massive requests, parts of request information are converted to hashing data in local-cache, and it deletes after the elapsed time.
 
 Also, HITS does not use GitHub Traffic or Google Analytics data, it simply counts every page hit of your site or repo.
-  
+
 ## LICENSE
 This project is licensed under GPL V3.0.
