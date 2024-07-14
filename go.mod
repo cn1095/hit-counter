@@ -5,8 +5,11 @@ go 1.22.5
 require (
 	github.com/PuerkitoBio/purell v1.2.1
 	github.com/caarlos0/env/v10 v10.0.0
+	github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0
 	github.com/pkg/errors v0.9.1
+	github.com/samber/lo v1.45.0
 	github.com/stretchr/testify v1.9.0
+	golang.org/x/image v0.18.0
 	golang.org/x/net v0.27.0
 )
 
