@@ -2,7 +2,7 @@ package badge
 
 import "strings"
 
-// flat Badge template
+// flat Badge template.
 var flatBadgeTemplate = strings.TrimSpace(`
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="{{.Dx}}" height="{{.Dy}}">
  <linearGradient id="smooth" x2="0" y2="100%">
@@ -29,7 +29,7 @@ var flatBadgeTemplate = strings.TrimSpace(`
 </svg>
 `)
 
-// icon Badge template
+// icon Badge template.
 var iconBadgeTemplate = strings.TrimSpace(`
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="{{.Dx}}" height="{{.Dy}}">
  <linearGradient id="smooth" x2="0" y2="100%">

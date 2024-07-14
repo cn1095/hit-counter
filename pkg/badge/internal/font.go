@@ -85,10 +85,10 @@ func (fd *fontM) getFontFamily() string {
 	return fd.fontFamily
 }
 
-// vera sans font drawer
+// vera sans font drawer.
 var veraSansDrawer fontDrawer
 
-// verdana font drawer
+// verdana font drawer.
 var verdanaDrawer fontDrawer
 
 func getFontDrawer(fontType FontType) (fontDrawer, error) {
