@@ -9,7 +9,7 @@
     <meta name="author" content="gjbae1212@gmail.com">
 
     <meta property="og:title" content="HITS">
-    <meta property="og:image" content="http://localhost:8080/icon.png">
+    <meta property="og:image" content="https://hits.seeyoufarm.com/icon.png">
     <meta property="og:description" content="Easy way to know how many visitors are viewing your Github, Website, Notion.">
 
     <title>HITS</title>
@@ -66,7 +66,7 @@
 <nav class="navbar navbar-expand-lg fixed-top text-uppercase" id="mainNav">
     <div class="container">
         <a class="navbar-brand img_background js-scroll-trigger" href="#page-top"></a>
-        <a href="http://localhost:8080"><img src="http://localhost:8080/api/count/incr/badge.svg?url=https%3A%2F%2Fhits.seeyoufarm.com"/></a>
+        <a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fhits.seeyoufarm.com"/></a>
         <button class="navbar-toggler navbar-toggler-right btn btn-primary text-uppercase text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             Menu
             <i class="fas fa-bars"></i>
@@ -206,7 +206,7 @@
                 <div class="text-box-container">
                     <p class="text-box" id="badge_markdown">
                         <!-- mark down-->
-                        [![Hits](http://localhost:8080/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fgjbae1212%2Fhit-counter)](http://localhost:8080)
+                        [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fgjbae1212%2Fhit-counter)](https://hits.seeyoufarm.com)
                     </p>
                     <button onclick="copyToClipboard('#badge_markdown')" class="btn copy-button">COPY</button>
                 </div>
@@ -217,7 +217,7 @@
                     <div class="text-box-container">
                         <p class="text-box" id="badge_link">
                             <!-- badge link-->
-                            &lt;a href="http://localhost:8080"&gt;&lt;img src="http://localhost:8080/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fgjbae1212%2Fhit-counter"/&gt;&lt;/a&gt;
+                            &lt;a href="https://hits.seeyoufarm.com"&gt;&lt;img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fgjbae1212%2Fhit-counter"/&gt;&lt;/a&gt;
                         </p>
                         <button onclick="copyToClipboard('#badge_link');" class="btn copy-button">COPY</button>
                     </div>
@@ -228,7 +228,7 @@
                     <div class="text-box-container">
                         <p class="text-box" id="embed_link">
                             <!-- embed url-->
-                            http://localhost:8080/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fgjbae1212%2Fhit-counter
+                            https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fgjbae1212%2Fhit-counter
                         </p>
                         <button onclick="copyToClipboard('#embed_link');" class="btn copy-button">COPY</button>
                     </div>
@@ -245,7 +245,7 @@
     <div class="container">
         <h2 class="text-center text-uppercase text-secondary mb-5 flex-cetner">SHOW RANK<i class="material-icons title-icon">military_tech</i></h2>
         <br/>
-        <div class="show-rank-content row mb-5">
+        <div class="show-rank-content row">
             <div class="col-lg-8 mx-auto">
                 <h4 class="mb-0 rank-subtitle"> <b>TOP 10</b> github projects using HITS.</h4>
                 <br/>
@@ -264,7 +264,7 @@
     <div class="container">
         <h2 class="text-center text-uppercase text-secondary mb-2 flex-cetner">SHOW HISTORY<i class="material-icons title-icon">show_chart</i></h2>
         <br/>
-        <h4 class="text-center text-uppercase text-secondary-light mb-5">History of daily hits in recently 6 monthly</h4>
+        <h4 class="text-center text-uppercase text-secondary-light mb-5">History of daily hits in recently 1 monthly</h4>
         <br/>
         <br/>
         <div class="row">
@@ -287,7 +287,7 @@
             </div>
         </div>
     </div>
-    <div class="container container-mobile-fill mb-5">
+    <div class="container container-mobile-fill">
         <div id="history_view">
             <div class="wating-graph ">
                 Press <b class="text-primary">SHOW GRAPH</b>
@@ -298,7 +298,7 @@
 
 <!--Stream Section -->
 <section class="secondary-bg text-white mb-0" id="stream">
-    <div class="container mb-5">
+    <div class="container">
         <h2 class="text-center text-uppercase text-secondary mb-2 flex-cetner">SHOW STREAM<i class="material-icons title-icon">history</i></h2>
         <br/>
         <h4 class="text-center text-uppercase text-secondary-light mb-5 font-weight-light">It is showing projects tracked by the HITS at this time.</h4>
@@ -352,11 +352,10 @@
 
 <!-- copy and paste -->
 <script type="text/javascript">
-    let domain = "http://localhost:8080";
-    let incrFormat = "http://localhost:8080/api/count/incr/badge.svg";
-    let keepFormat       = "http://localhost:8080/api/count/keep/badge.svg";
+    let domain = "https://hits.seeyoufarm.com";
+    let incrFormat = "https://hits.seeyoufarm.com/api/count/incr/badge.svg";
+    let keepFormat       = "https://hits.seeyoufarm.com/api/count/keep/badge.svg";
     let markdownFormat = "[![Hits]({0})]({1})";
-    let showFormat     = "<a href=\"{0}\"><img src=\"{1}\"/></a>";
     let linkFormat     = "&lt;a href=\"{0}\"&gt;&lt;img src=\"{1}\"/&gt;&lt;/a&gt;";
 
     // options for image of badge.

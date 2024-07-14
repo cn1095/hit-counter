@@ -43,12 +43,12 @@ func TestView(t *testing.T) {
 	}{
 		{
 			name:  "wasm",
-			input: "view/hits_production.wasm",
+			input: "view/production/hits.wasm",
 			isErr: false,
 		},
 		{
 			name:  "html",
-			input: "view/production.html",
+			input: "view/production/index.html",
 			isErr: false,
 		},
 	}

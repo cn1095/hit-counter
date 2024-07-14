@@ -49,6 +49,7 @@ func Run() {
 func parseURL(s string) (schema, host, port, path, query, fragment string, err error) {
 	if s == "" {
 		err = fmt.Errorf("[err] ParseURI empty uri")
+		return
 	}
 
 	url, suberr := urlx.Parse(s)

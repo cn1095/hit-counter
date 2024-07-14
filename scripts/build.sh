@@ -12,7 +12,7 @@ function make_wasm
   case $phase in
   local|production)
     echo "WASM Phase: $phase"
-    rm $CURRENT/web/view/hits_$phase.wasm
+    rm $CURRENT/web/view/$phase/hits.wasm || true
     ;;
   *)
     echo "Invalid Phase: $phase"
@@ -23,9 +23,9 @@ function make_wasm
   # copy wasm_exec.js
   cp $(go env GOROOT)/misc/wasm/wasm_exec.js $CURRENT/web/public/
 
-  GOOS=js GOARCH=wasm go build -ldflags="-s -w -X main.phase=$phase" -o $CURRENT/web/view/hits_$phase.wasm $CURRENT/cmd/wasm/main.go
-  gzip $CURRENT/web/view/hits_$phase.wasm
-  mv $CURRENT/web/view/hits_$phase.wasm.gz $CURRENT/web/view/hits_$phase.wasm
+  GOOS=js GOARCH=wasm go build -ldflags="-s -w -X main.phase=$phase" -o $CURRENT/web/view/$phase/hits.wasm $CURRENT/cmd/wasm/main.go
+  gzip $CURRENT/web/view/$phase/hits.wasm
+  mv $CURRENT/web/view/$phase/hits.wasm.gz $CURRENT/web/view/$phase/hits.wasm
 }
 
 function _cleanup
