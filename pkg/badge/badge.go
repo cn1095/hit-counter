@@ -8,10 +8,9 @@ import (
 	"io/fs"
 	"strings"
 
-	"github.com/samber/lo"
-
 	"github.com/gjbae1212/hit-counter/pkg/badge/internal/assets"
 	perrors "github.com/pkg/errors"
+	"github.com/samber/lo"
 )
 
 const (
