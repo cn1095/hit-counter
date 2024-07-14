@@ -16,9 +16,9 @@ var (
 type LocalEnvironments struct {
 	Debug      bool                        `env:"DEBUG,notEmpty"`
 	Phase      internalstring.TrimString   `env:"PHASE,notEmpty"`
-	SentryDSN  internalstring.TrimString   `env:"SENTRY_DSN,notEmpty"`
+	SentryDSN  internalstring.TrimString   `env:"SENTRY_DSN"`
 	ForceHTTPS bool                        `env:"FORCE_HTTPS,notEmpty"`
-	RedisAddr  []internalstring.TrimString `env:"REDIS_ADDRS,notEmpty" envSeparator:","`
+	RedisAddrs []internalstring.TrimString `env:"REDIS_ADDRS,notEmpty" envSeparator:","`
 }
 
 // MustInitializeLocalEnvironments must initialize a local environments obj.
