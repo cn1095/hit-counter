@@ -17,7 +17,6 @@ type LocalEnvironments struct {
 	Debug      bool                        `env:"DEBUG,notEmpty"`
 	Phase      internalstring.TrimString   `env:"PHASE,notEmpty"`
 	SentryDSN  internalstring.TrimString   `env:"SENTRY_DSN"`
-	ForceHTTPS bool                        `env:"FORCE_HTTPS,notEmpty"`
 	RedisAddrs []internalstring.TrimString `env:"REDIS_ADDRS,notEmpty" envSeparator:","`
 }
 
