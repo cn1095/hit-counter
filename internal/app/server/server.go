@@ -2,20 +2,30 @@ package server
 
 import (
 	"context"
+	"encoding/base64"
+	"errors"
 	"fmt"
+	"io/fs"
 	"log/slog"
+	"net/http"
 	"os"
 	"runtime"
+	"strconv"
 	"time"
 
 	sentryecho "github.com/getsentry/sentry-go/echo"
 	"github.com/gjbae1212/hit-counter/internal/app/server/config"
 	servercontext "github.com/gjbae1212/hit-counter/internal/app/server/context"
 	"github.com/gjbae1212/hit-counter/internal/sentry"
+	"github.com/gjbae1212/hit-counter/web"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 	perrors "github.com/pkg/errors"
 	_ "go.uber.org/automaxprocs"
+)
+
+const (
+	healthCheckPath = "/healthcheck"
 )
 
 type httpServer struct {
@@ -30,6 +40,9 @@ func (hs *httpServer) initializeMiddlewares() error {
 	hs.echo.Server.ReadTimeout = 10 * time.Second
 	hs.echo.Server.WriteTimeout = 10 * time.Second
 
+	// set panic middleware.
+	hs.echo.Use(middleware.Recover())
+
 	// set sentry middleware.
 	hs.echo.Use(sentryecho.New(sentryecho.Options{Repanic: true}))
 
@@ -41,7 +54,9 @@ func (hs *httpServer) initializeMiddlewares() error {
 		ContentSecurityPolicy: "default-src 'none'; style-src 'unsafe-inline'",
 	}))
 
-	hs.echo.Use(middleware.HTTPSRedirect())
+	if !hs.env.Debug {
+		hs.echo.Use(middleware.HTTPSRedirect())
+	}
 
 	hs.echo.Use(middleware.RemoveTrailingSlash())
 
@@ -72,15 +87,95 @@ func (hs *httpServer) initializeMiddlewares() error {
 			return next(hitCtx)
 		}
 	})
-	// TODO: cookie middleware
 
-	// TODO: main middleware
+	// set cookie duration 24 hour.
+	hs.echo.Use(func(next echo.HandlerFunc) echo.HandlerFunc {
+		return func(c echo.Context) error {
+			const (
+				cookieName = "ckid"
+			)
+
+			hitCtx := c.(*servercontext.HitCounterContext)
+			cookie, err := c.Cookie(cookieName)
+			if err != nil {
+				v := fmt.Sprintf("%s-%d", c.RealIP(), time.Now().UnixNano())
+				b64 := base64.StdEncoding.EncodeToString([]byte(v))
+				cookie = &http.Cookie{
+					Name:     cookieName,
+					Value:    b64,
+					Expires:  time.Now().Add(24 * time.Hour),
+					Path:     "/",
+					HttpOnly: true,
+					Secure:   true,
+					SameSite: http.SameSiteNoneMode,
+				}
+				hitCtx.SetCookie(cookie)
+			}
+			hitCtx.Set(cookie.Name, cookie.Value)
+			return next(hitCtx)
+		}
+	})
+
+	// main middleware.
+	hs.echo.Use(func(next echo.HandlerFunc) echo.HandlerFunc {
+		return func(c echo.Context) error {
+			hitCtx := c.(*servercontext.HitCounterContext)
+			start := hitCtx.ValueContext("start_time").(time.Time)
+			extraLog := hitCtx.ValueContext("extra_log").(map[string]interface{})
+
+			// process main handler.
+			err := next(hitCtx)
+			stop := time.Now()
+			latency := stop.Sub(start)
+
+			if err != nil {
+				code := http.StatusInternalServerError
+				if httpErr := (*echo.HTTPError)(nil); errors.As(err, &httpErr) {
+					code = httpErr.Code
+				} else if hitCtx.Response().Status >= http.StatusBadRequest {
+					code = hitCtx.Response().Status
+				}
+
+				extraLog["status"] = code
+				extraLog["error"] = fmt.Sprintf("%v\n", err)
+				if code >= http.StatusInternalServerError {
+					sentry.Error(err)
+					extraLog["latency"] = strconv.FormatInt(int64(latency), 10)
+					extraLog["latency_human"] = latency.String()
+				}
+				hitCtx.Logger().Errorj(extraLog)
+				return err
+			}
+
+			if extraLog["uri"] != healthCheckPath {
+				extraLog["status"] = hitCtx.Response().Status
+				extraLog["latency"] = strconv.FormatInt(int64(latency), 10)
+				extraLog["latency_human"] = latency.String()
+				hitCtx.Logger().Infoj(extraLog)
+			}
+			return nil
+		}
+	})
 
 	return nil
 }
 
 func (hs *httpServer) initializeRoutes() error {
+	// set public route.
+	public, err := fs.Sub(web.Public, "public")
+	if err != nil {
+		return perrors.WithStack(err)
+	}
+	hs.echo.GET("/public/*",
+		echo.WrapHandler(
+			http.StripPrefix("/public/", http.FileServer(http.FS(public))),
+		),
+	)
+
+	// set health check route.
+
 	// TODO:
+
 	return nil
 }
 
