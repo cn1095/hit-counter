@@ -9,7 +9,6 @@ import (
 	"log/slog"
 	"net/http"
 	"os"
-	"runtime"
 	"strconv"
 	"time"
 
@@ -21,7 +20,6 @@ import (
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 	perrors "github.com/pkg/errors"
-	_ "go.uber.org/automaxprocs"
 )
 
 const (
@@ -219,9 +217,6 @@ func Run(addr string, tls bool) {
 			panic(perrors.WithStack(err))
 		}
 	}
-
-	// show number of logical cpu and go processor(automaxprocs).
-	slog.Info(fmt.Sprintf("logical cpu = %d, go processor = %d", runtime.NumCPU(), runtime.GOMAXPROCS(0)))
 
 	// create server.
 	server := &httpServer{

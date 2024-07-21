@@ -12,6 +12,12 @@ function test
   go test -v $(go list ./... | grep -v vendor)  --count 1 -race -covermode=atomic -timeout 300s
 }
 
+function test_with_docker
+{
+  run_containers # cleanup
+  go test -v $(go list ./... | grep -v vendor) --tags=docker --count 1 -race -covermode=atomic -timeout 300s
+}
+
 function lint
 {
   go list -f '{{.Dir}}' -m  | xargs -I{} golangci-lint run -v {}/...
@@ -42,6 +48,10 @@ function _cleanup
   local no=$2
   local func=$3
   local cmd=$4
+
+  if [[ $cmd == "test_with_docker" ]]; then
+      stop_containers
+  fi
 
   if [[ $ret == "0" ]]; then
       echo -e "${Green}[SUCCESS][$cmd]${Color_Off}"
