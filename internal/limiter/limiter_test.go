@@ -1,6 +1,6 @@
 //go:build docker
 
-package counter
+package limiter
 
 import (
 	"os"
@@ -13,11 +13,7 @@ const (
 	mockRedisAddr = "localhost:6379"
 )
 
-var (
-	mockCounter Counter
-)
-
-func TestMustCounter(t *testing.T) {
+func TestMustNewLimiter(t *testing.T) {
 	tests := []struct {
 		name  string
 		addr  string
@@ -39,11 +35,11 @@ func TestMustCounter(t *testing.T) {
 		t.Run(tc.name, func(t *testing.T) {
 			if tc.isErr {
 				assert.Panics(t, func() {
-					MustNewCounter(tc.addr, false)
+					MustNewLimiter(tc.addr, false)
 				})
 			} else {
 				assert.NotPanics(t, func() {
-					MustNewCounter(tc.addr, false)
+					MustNewLimiter(tc.addr, false)
 				})
 			}
 		})
@@ -51,6 +47,5 @@ func TestMustCounter(t *testing.T) {
 }
 
 func TestMain(m *testing.M) {
-	mockCounter = MustNewCounter(mockRedisAddr, false)
 	os.Exit(m.Run())
 }

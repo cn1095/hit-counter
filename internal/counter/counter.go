@@ -30,8 +30,8 @@ type counter struct {
 	redisClient redis.UniversalClient
 }
 
-// MustCounter creates counter.
-func MustCounter(redisAddr string, redisCluster bool) Counter {
+// MustNewCounter creates counter.
+func MustNewCounter(redisAddr string, redisCluster bool) Counter {
 	if redisAddr == "" {
 		panic(fmt.Errorf("[err] empty redis addr"))
 	}
