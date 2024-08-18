@@ -63,3 +63,71 @@ func TestView(t *testing.T) {
 		})
 	}
 }
+
+func TestGetWasm(t *testing.T) {
+	tests := []struct {
+		name  string
+		input string
+		isErr bool
+	}{
+		{
+			name:  "error",
+			input: "empty",
+			isErr: true,
+		},
+		{
+			name:  "success-local",
+			input: "local",
+			isErr: false,
+		},
+		{
+			name:  "success-production",
+			input: "production",
+			isErr: false,
+		},
+	}
+
+	for _, tc := range tests {
+		t.Run(tc.name, func(t *testing.T) {
+			output, err := GetWasm(tc.input)
+			assert.Equal(t, tc.isErr, err != nil)
+			if err == nil {
+				assert.NotEmpty(t, output)
+			}
+		})
+	}
+}
+
+func TestGetIndexHtml(t *testing.T) {
+	tests := []struct {
+		name  string
+		input string
+		isErr bool
+	}{
+		{
+			name:  "error",
+			input: "empty",
+			isErr: true,
+		},
+		{
+			name:  "success-local",
+			input: "local",
+			isErr: false,
+		},
+		{
+			name:  "success-production",
+			input: "production",
+			isErr: false,
+		},
+	}
+
+	for _, tc := range tests {
+		t.Run(tc.name, func(t *testing.T) {
+			output, err := GetIndexHtml(tc.input)
+			assert.Equal(t, tc.isErr, err != nil)
+			if err == nil {
+				assert.NotEmpty(t, output)
+			}
+		})
+	}
+}

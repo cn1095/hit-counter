@@ -15,6 +15,7 @@ import (
 	sentryecho "github.com/getsentry/sentry-go/echo"
 	"github.com/gjbae1212/hit-counter/internal/app/server/config"
 	servercontext "github.com/gjbae1212/hit-counter/internal/app/server/context"
+	"github.com/gjbae1212/hit-counter/internal/app/server/handler"
 	"github.com/gjbae1212/hit-counter/internal/sentry"
 	"github.com/gjbae1212/hit-counter/web"
 	"github.com/labstack/echo/v4"
@@ -67,7 +68,8 @@ func (hs *httpServer) initializeMiddlewares() error {
 	// set custom context.
 	hs.echo.Use(func(next echo.HandlerFunc) echo.HandlerFunc {
 		return func(c echo.Context) error {
-			hitCtx := &servercontext.HitCounterContext{Context: c}
+			// wrapping echo context with phase string.
+			hitCtx := servercontext.NewHitCounterContext(c)
 
 			// set start time.
 			hitCtx.WithContext("start_time", time.Now())
@@ -159,6 +161,15 @@ func (hs *httpServer) initializeMiddlewares() error {
 }
 
 func (hs *httpServer) initializeRoutes() error {
+	// initialize handler.
+	h := handler.MustNewHandler(hs.env.Phase.String(), hs.env.RedisAddr.String(), hs.env.RedisCluster)
+
+	// set error handler.
+	hs.echo.HTTPErrorHandler = h.Error
+
+	// set health check.
+	hs.echo.GET("/healthcheck", h.HealthCheck)
+
 	// set public route.
 	public, err := fs.Sub(web.Public, "public")
 	if err != nil {
@@ -166,12 +177,23 @@ func (hs *httpServer) initializeRoutes() error {
 	}
 	hs.echo.GET("/public/*",
 		echo.WrapHandler(
-			http.StripPrefix("/public/", http.FileServer(http.FS(public))),
+			http.StripPrefix(
+				"/public/",
+				http.FileServer(http.FS(public)),
+			),
 		),
 	)
 
-	// set health check route.
+	// set wasm.
+	hs.echo.GET("/hits.wasm", h.Wasm)
 
+	// set websocket.
+	hs.echo.GET("/ws", h.WebSocket)
+
+	// set main.
+	hs.echo.GET("/", h.Index)
+
+	// TODO:
 	// TODO:
 
 	return nil

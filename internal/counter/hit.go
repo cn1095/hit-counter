@@ -160,7 +160,7 @@ func (c *counter) GetHitOfDailyByRange(ctx context.Context, id string, timeRange
 		return nil, fmt.Errorf("[err] GetHitOfDailyByRange empty params")
 	}
 
-	var keys []string
+	keys := make([]string, 0, len(timeRange))
 	for _, t := range timeRange {
 		keys = append(keys, fmt.Sprintf(hitDailyFormat, intime.TimeToDailyStringFormat(t), id))
 	}

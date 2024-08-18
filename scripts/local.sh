@@ -30,7 +30,7 @@ function mock
 
 function tools
 {
-  go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.59.1
+  go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.60.1
   go install github.com/vektra/mockery/v2@v2.43.2
 }
 

@@ -21,18 +21,18 @@ func (c *HitCounterContext) SetContext(ctx context.Context) {
 }
 
 // WithContext set a context with new value to request.
-func (c *HitCounterContext) WithContext(key, val interface{}) {
+func (c *HitCounterContext) WithContext(key, val any) {
 	ctx := c.GetContext()
 	c.SetContext(context.WithValue(ctx, key, val))
 }
 
 // ValueContext returns values in request context.
-func (c *HitCounterContext) ValueContext(key interface{}) interface{} {
+func (c *HitCounterContext) ValueContext(key any) any {
 	return c.GetContext().Value(key)
 }
 
 // ExtraLog returns log struct.
-func (c *HitCounterContext) ExtraLog() map[string]interface{} {
+func (c *HitCounterContext) ExtraLog() map[string]any {
 	return map[string]interface{}{
 		"host":       c.Request().Host,
 		"ip":         c.RealIP(),
@@ -41,4 +41,9 @@ func (c *HitCounterContext) ExtraLog() map[string]interface{} {
 		"referer":    c.Request().Referer(),
 		"user-agent": c.Request().UserAgent(),
 	}
+}
+
+// NewHitCounterContext returns a new HitCounterContext.
+func NewHitCounterContext(c echo.Context) *HitCounterContext {
+	return &HitCounterContext{Context: c}
 }

@@ -1,0 +1,23 @@
+# https://vektra.github.io/mockery/latest/configuration/#templated-strings
+print: True
+filename: "{{.InterfaceName | snakecase | lower }}_mock.go"
+mockname: "Mock{{.InterfaceName}}"
+dir: "{{.InterfaceDir}}"
+packages:
+  github.com/gjbae1212/hit-counter/internal/counter:
+    config:
+      all: True
+      recursive: True
+      with-expecter: True
+      inpackage: True
+  github.com/gjbae1212/hit-counter/internal/limiter:
+    config:
+      all: True
+      recursive: True
+      with-expecter: True
+      inpackage: True
+  github.com/gjbae1212/go-ws-broadcast:
+    config:
+      dir: ./testdata/mock/{{.PackagePath}}
+    interfaces:
+      Breaker:

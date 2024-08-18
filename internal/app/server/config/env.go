@@ -14,10 +14,11 @@ var (
 )
 
 type LocalEnvironments struct {
-	Debug     bool                      `env:"DEBUG,notEmpty"`
-	Phase     internalstring.TrimString `env:"PHASE,notEmpty"`
-	SentryDSN internalstring.TrimString `env:"SENTRY_DSN"`
-	RedisAddr internalstring.TrimString `env:"REDIS_ADDR,notEmpty" envSeparator:","`
+	Debug        bool                      `env:"DEBUG,notEmpty"`
+	Phase        internalstring.TrimString `env:"PHASE,notEmpty"`
+	SentryDSN    internalstring.TrimString `env:"SENTRY_DSN"`
+	RedisAddr    internalstring.TrimString `env:"REDIS_ADDR,notEmpty" envSeparator:","`
+	RedisCluster bool                      `env:"REDIS_CLUSTER,notEmpty"`
 }
 
 // MustInitializeLocalEnvironments must initialize a local environments obj.
