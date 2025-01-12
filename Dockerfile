@@ -1,6 +1,6 @@
 FROM golang:1.16.3-alpine AS builder
 
-WORKDIR /go/src/github.com/gjbae1212/hit-counter
+WORKDIR /hit-counter
 
 RUN go env -w GO111MODULE="on"
 
@@ -13,15 +13,15 @@ RUN go mod download
 # copy all
 COPY ./ ./
 
-RUN CGO_ENABLED=0 go build -a -ldflags "-w -s" -o /go/bin/hit-counter
+RUN CGO_ENABLED=0 go build -a -ldflags "-w -s" -o /hit-counter/hit-counter
 
 # Minimize a docker image
 FROM gcr.io/distroless/base:latest
 
-COPY --from=builder /go/bin/hit-counter /go/bin/hit-counter
+COPY --from=builder /hit-counter/hit-counter /hit-counter/hit-counter
 
-COPY --from=builder /go/src/github.com/gjbae1212/hit-counter/public /public
+COPY /public /public
 
-COPY --from=builder /go/src/github.com/gjbae1212/hit-counter/view /go/src/github.com/gjbae1212/hit-counter/view
+COPY /view /hit-counter/view
 
-CMD ["/go/bin/hit-counter"]
+CMD ["/hit-counter/hit-counter"]
