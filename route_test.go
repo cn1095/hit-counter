@@ -30,7 +30,7 @@ func TestGroup(t *testing.T) {
 	e := echo.New()
 
 	mockHandler := func(c echo.Context) error {
-		log.Println("call????")
+		log.Println("啊哈？？？！！！")
 		return nil
 	}
 
