@@ -13,17 +13,17 @@ import (
 
 func AddRoute(e *echo.Echo, redisAddr string) error {
 	if e == nil {
-		return fmt.Errorf("[Err] AddRoute empty params")
+		return fmt.Errorf("[错误] 添加路由时参数为空")
 	}
 
 	h, err := handler.NewHandler(redisAddr)
 	if err != nil {
-		return fmt.Errorf("[err] AddRoute %w", err)
+		return fmt.Errorf("[错误] 添加路由 %w", err)
 	}
 
 	api, err := api_handler.NewHandler(h)
 	if err != nil {
-		return fmt.Errorf("[err] AddRoute %w", err)
+		return fmt.Errorf("[错误] 添加路由 %w", err)
 	}
 
 	// error handler
@@ -50,7 +50,7 @@ func AddRoute(e *echo.Echo, redisAddr string) error {
 	// group /api/count
 	g1, err := groupApiCount()
 	if err != nil {
-		return fmt.Errorf("[err] AddRoute %w", err)
+		return fmt.Errorf("[错误] 添加路由 %w", err)
 	}
 	count := e.Group("/api/count", g1...)
 	// badge
@@ -63,7 +63,7 @@ func AddRoute(e *echo.Echo, redisAddr string) error {
 	// group /api/rank
 	g2, err := groupApiRank()
 	if err != nil {
-		return fmt.Errorf("[err] AddRoute %w", err)
+		return fmt.Errorf("[错误] 添加路由 %w", err)
 	}
 	rank := e.Group("/api/rank", g2...)
 	_ = rank
@@ -81,16 +81,16 @@ func groupApiCount() ([]echo.MiddlewareFunc, error) {
 			// check a url is invalid or not.
 			url := hitctx.QueryParam("url")
 			if url == "" {
-				return echo.NewHTTPError(http.StatusBadRequest, "Not Found URL Query String")
+				return echo.NewHTTPError(http.StatusBadRequest, "未找到 URL 查询字符串")
 			}
 
 			schema, host, _, path, _, _, err := internal.ParseURL(url)
 			if err != nil {
-				return echo.NewHTTPError(http.StatusBadRequest, fmt.Sprintf("Invalid URL Query String %s", url))
+				return echo.NewHTTPError(http.StatusBadRequest, fmt.Sprintf("无效的 URL 查询字符串 %s", url))
 			}
 
 			if !internal.StringInSlice(schema, []string{"http", "https"}) {
-				return echo.NewHTTPError(http.StatusBadRequest, fmt.Sprintf("Not Support Schema %s", schema))
+				return echo.NewHTTPError(http.StatusBadRequest, fmt.Sprintf("不支持的协议/模式 %s", schema))
 			}
 
 			// extract required parameters
