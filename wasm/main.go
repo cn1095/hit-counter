@@ -14,9 +14,9 @@ import (
 )
 
 var (
-	markdownFormat = "[![Hits](%s)](%s)"
-	showFormat     = "<a href=\"%s\"/><img src=\"%s\"/></a>"
-	linkFormat     = "&lt;a href=\"%s\"/&gt;&lt;img src=\"%s\"/&gt;&lt;/a&gt;"
+	markdownFormat = "![](%s)"
+	showFormat     = "<img src=\"%s\"/>"
+	linkFormat     = "&lt;a&gt;&lt;img src=\"%s\"/&gt;"
 	incrPath       = "api/count/incr/badge.svg"
 	keepPath       = "api/count/keep/badge.svg"
 	defaultDomain  = ""
@@ -148,12 +148,12 @@ func registerCallbacks() {
 func connectWebsocket() {
 	ws := js.Global().Get("WebSocket").New(defaultWS)
 	ws.Call("addEventListener", "open", js.FuncOf(func(this js.Value, args []js.Value) interface{} {
-		println("websocket connection")
+		println("websocket 连接")
 		return nil
 	}))
 	ws.Call("addEventListener", "close", js.FuncOf(func(this js.Value, args []js.Value) interface{} {
 		code := args[0].Get("code").Int()
-		println(fmt.Sprintf("websocket close %d\n", code))
+		println(fmt.Sprintf("websocket 关闭 %d\n", code))
 		if code == 1000 {
 			println("websocket bye!")
 		} else {
@@ -174,7 +174,7 @@ func connectWebsocket() {
 	}))
 	ws.Call("addEventListener", "error", js.FuncOf(func(this js.Value, args []js.Value) interface{} {
 		code := args[0].Get("code").String()
-		println(fmt.Sprintf("websocket error %s\n", code))
+		println(fmt.Sprintf("websocket 错误 %s\n", code))
 		if "ECONNREFUSED" == code {
 			go func() {
 				select {
@@ -183,7 +183,7 @@ func connectWebsocket() {
 				}
 			}()
 		} else {
-			println("websocket bye!")
+			println("websocket 再见!")
 		}
 		return nil
 	}))
@@ -196,7 +196,7 @@ func main() {
 		defaultURL = fmt.Sprintf("http://%s", defaultDomain)
 		defaultWS = fmt.Sprintf("ws://%s/ws", defaultDomain)
 	} else {
-		defaultDomain = "hits.seeyoufarm.com"
+		defaultDomain = "你的域名"
 		defaultURL = fmt.Sprintf("https://%s", defaultDomain)
 		defaultWS = fmt.Sprintf("wss://%s/ws", defaultDomain)
 	}
