@@ -19,7 +19,7 @@ import (
 // AddMiddleware adds middlewares to echo server.
 func AddMiddleware(e *echo.Echo, opts ...Option) error {
 	if e == nil {
-		return fmt.Errorf("[err] AddMiddleware %w", internal.ErrorEmptyParams)
+		return fmt.Errorf("[错误] 添加中间件 %w", internal.ErrorEmptyParams)
 	}
 
 	o := []Option{WithDebugOption(true)}
