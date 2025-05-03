@@ -6,7 +6,7 @@ on:
       upx:
         description: '编译完成后是否使用upx压缩体积'
         required: true
-        default: true
+        default: false
         type: boolean
       rel:
         description: '编译完成后是否发布releases'
@@ -92,6 +92,7 @@ jobs:
             mv -f hit hit-${NAME}
             echo "build_time=$(date '+%Y年%m月%d日%H:%M:%S' | jq -sRr @uri)" >> $GITHUB_ENV
             echo "build_tag=$(date '+%Y-%m-%d')" >> $GITHUB_ENV
+            hit -h || true
       - name: 安装 UPX
         if: github.event.inputs.upx == 'true'
         uses: crazy-max/ghaction-upx@v3
