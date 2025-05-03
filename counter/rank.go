@@ -7,7 +7,7 @@ import (
 
 	"github.com/go-redis/redis/v8"
 
-	"github.com/gjbae1212/hit-counter/internal"
+	"github.com/cn1095/hit-counter/internal"
 )
 
 var (
@@ -18,7 +18,7 @@ var (
 // IncreaseRankOfDaily increases daily rank score.
 func (d *db) IncreaseRankOfDaily(ctx context.Context, group, id string, t time.Time) (*Score, error) {
 	if group == "" || id == "" || t.IsZero() {
-		return nil, fmt.Errorf("[err] IncreaseRankOfDaily %w", internal.ErrorEmptyParams)
+		return nil, fmt.Errorf("[错误] IncreaseRankOfDaily %w", internal.ErrorEmptyParams)
 	}
 
 	pipe := d.redisClient.Pipeline()
@@ -31,7 +31,7 @@ func (d *db) IncreaseRankOfDaily(ctx context.Context, group, id string, t time.T
 	pipe.Expire(ctx, key, time.Hour*24*60)
 
 	if _, err := pipe.Exec(ctx); err != nil {
-		return nil, fmt.Errorf("[err] IncreaseRankOfDaily %w", err)
+		return nil, fmt.Errorf("[错误] IncreaseRankOfDaily %w", err)
 	}
 
 	incr, _ := incrResult.Result()
@@ -41,13 +41,13 @@ func (d *db) IncreaseRankOfDaily(ctx context.Context, group, id string, t time.T
 // IncreaseRankOfTotal increases accumulate rank score.
 func (d *db) IncreaseRankOfTotal(ctx context.Context, group, id string) (*Score, error) {
 	if group == "" || id == "" {
-		return nil, fmt.Errorf("[err] IncreaseRankOfTotal %w", internal.ErrorEmptyParams)
+		return nil, fmt.Errorf("[错误] IncreaseRankOfTotal %w", internal.ErrorEmptyParams)
 	}
 
 	key := fmt.Sprintf(rankTotalFormat, group)
 	v, err := d.redisClient.ZIncrBy(ctx, key, 1, id).Result()
 	if err != nil {
-		return nil, fmt.Errorf("[err] IncreaseRankOfTotal %w", err)
+		return nil, fmt.Errorf("[错误] IncreaseRankOfTotal %w", err)
 	}
 
 	return &Score{Name: id, Value: int64(v)}, nil
@@ -56,7 +56,7 @@ func (d *db) IncreaseRankOfTotal(ctx context.Context, group, id string) (*Score,
 // GetRankDailyByLimit returns daily rank scores by limit.
 func (d *db) GetRankDailyByLimit(ctx context.Context, group string, limit int, t time.Time) ([]*Score, error) {
 	if group == "" || limit <= 0 {
-		return nil, fmt.Errorf("[err] GetRankDailyByLimit %w", internal.ErrorEmptyParams)
+		return nil, fmt.Errorf("[错误] GetRankDailyByLimit %w", internal.ErrorEmptyParams)
 	}
 	var ret []*Score
 
@@ -67,7 +67,7 @@ func (d *db) GetRankDailyByLimit(ctx context.Context, group string, limit int, t
 	if err == redis.Nil {
 		return ret, nil
 	} else if err != nil {
-		return nil, fmt.Errorf("[err] GetRankDailyByLimit %w", err)
+		return nil, fmt.Errorf("[错误] GetRankDailyByLimit %w", err)
 	}
 
 	for _, score := range scores {
@@ -82,7 +82,7 @@ func (d *db) GetRankDailyByLimit(ctx context.Context, group string, limit int, t
 // GetRankTotalByLimit returns total ranks.
 func (d *db) GetRankTotalByLimit(ctx context.Context, group string, limit int) ([]*Score, error) {
 	if group == "" || limit <= 0 {
-		return nil, fmt.Errorf("[err] GetRankTotalByLimit %w", internal.ErrorEmptyParams)
+		return nil, fmt.Errorf("[错误] GetRankTotalByLimit %w", internal.ErrorEmptyParams)
 	}
 
 	var ret []*Score
@@ -93,7 +93,7 @@ func (d *db) GetRankTotalByLimit(ctx context.Context, group string, limit int) (
 	if err == redis.Nil {
 		return ret, nil
 	} else if err != nil {
-		return nil, fmt.Errorf("[err] GetRankTotalByLimit %w", err)
+		return nil, fmt.Errorf("[错误] GetRankTotalByLimit %w", err)
 	}
 
 	for _, score := range scores {
