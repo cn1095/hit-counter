@@ -5,7 +5,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/gjbae1212/hit-counter/handler"
+	"github.com/cn1095/hit-counter/handler"
 
 	"github.com/alicebob/miniredis"
 	echo "github.com/labstack/echo/v4"
