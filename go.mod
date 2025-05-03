@@ -1,4 +1,4 @@
-module hit-counter
+module github.com/cn1095/hit-counter
 
 go 1.20
 
