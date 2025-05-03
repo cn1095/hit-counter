@@ -1,6 +1,7 @@
 package main // import "github.com/cn1095/hit-counter"
 
 import (
+	"embed"
 	"flag"
 	"log"
 	"os"
@@ -14,8 +15,11 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
+//go:embed public/* view/*
+var embeddedFiles embed.FS // 嵌入 public 和 view 目录中的所有文件
+
 var (
-	address = flag.String("addr", ":8080", "address")
+	address = flag.String("port", ":8080", "port")
 	tls     = flag.Bool("tls", false, "tls")
 )
 
@@ -56,7 +60,11 @@ func main() {
 	if err := AddMiddleware(e, opts...); err != nil {
 		log.Panic(err)
 	}
-
+	
+	// 设置静态文件目录为 embed 文件系统（替代 e.Static）
+	staticFS := echo.MustSubFS(embeddedFiles, "public")
+	e.StaticFS("/", staticFS)
+	
 	// add route
 	if err := AddRoute(e, env.GetRedisAddrs()[0]); err != nil {
 		log.Panic(err)
