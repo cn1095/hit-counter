@@ -334,12 +334,12 @@
 
 <!-- copy and paste -->
 <script type="text/javascript">
-    let domain = "";
-    let incrFormat = "/api/count/incr/badge.svg";
-    let keepFormat       = "/api/count/keep/badge.svg";
+    let domain = window.location.origin;
+    let incrFormat = domain + "/api/count/incr/badge.svg";
+    let keepFormat = domain + "/api/count/keep/badge.svg";
     let markdownFormat = "[![Hits]({0})]({1})";
-    let showFormat     = "<a href=\"{0}\"><img src=\"{1}\"/></a>";
-    let linkFormat     = "&lt;a href=\"{0}\"&gt;&lt;img src=\"{1}\"/&gt;&lt;/a&gt;";
+    let showFormat = "<a href=\"{0}\"><img src=\"{1}\"/></a>";
+    let linkFormat = "&lt;a href=\"{0}\"&gt;&lt;img src=\"{1}\"/&gt;&lt;/a&gt;";
 
     // options for image of badge.
     let countBgColor = "#79C83D";
