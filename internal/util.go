@@ -40,7 +40,7 @@ func StringInSlice(str string, list []string) bool {
 // ParseURL parses url.
 func ParseURL(s string) (schema, host, port, path, query, fragment string, err error) {
 	if s == "" {
-		err = fmt.Errorf("[err] ParseURL %w", ErrorEmptyParams)
+		err = fmt.Errorf("[错误]解析URL %w", ErrorEmptyParams)
 	}
 
 	url, suberr := urlx.Parse(s)
