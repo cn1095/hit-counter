@@ -1,13 +1,12 @@
 package handler
 
 import (
-	"github.com/cn1095/hit-counter/internal"
 	"github.com/labstack/echo/v4"
-	"io/fs"
 	"net/http"
-	"strings"
+	_ "embed"
 )
-
+//go:embed view/hits.wasm
+var embeddedFile embed.FS // 嵌入 hits.wasm 文件
 // Wasm is API for serving wasm file.
 func (h *Handler) Wasm(c echo.Context) error {
 	hctx := c.(*HitCounterContext)
