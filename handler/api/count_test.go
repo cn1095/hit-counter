@@ -7,8 +7,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/gjbae1212/hit-counter/handler"
-	"github.com/gjbae1212/hit-counter/internal"
+	"github.com/cn1095/hit-counter/handler"
+	"github.com/cn1095/hit-counter/internal"
 	"github.com/labstack/echo/v4"
 	"github.com/stretchr/testify/assert"
 )
@@ -35,7 +35,7 @@ func TestHandler_KeepCount(t *testing.T) {
 	defaultCtx := &handler.HitCounterContext{Context: e.NewContext(defaultR, defaultW)}
 	defaultCtx.Set("ckid", "test")
 	defaultCtx.Set("host", "github.com")
-	defaultCtx.Set("path", "gjbae1212/hit-counter")
+	defaultCtx.Set("path", "用户名/仓库名")
 	defaultCtx.Set("title", " ")
 	defaultCtx.Set("title_bg", " ")
 	defaultCtx.Set("count_bg", " ")
@@ -53,7 +53,7 @@ func TestHandler_KeepCount(t *testing.T) {
 	titleCtx := &handler.HitCounterContext{Context: e.NewContext(titleR, titleW)}
 	titleCtx.Set("ckid", "test")
 	titleCtx.Set("host", "github.com")
-	titleCtx.Set("path", "gjbae1212/hit-counter")
+	titleCtx.Set("path", "用户名/仓库名")
 	titleCtx.Set("title", " hello ")
 	titleCtx.Set("title_bg", "")
 	titleCtx.Set("count_bg", "")
@@ -71,7 +71,7 @@ func TestHandler_KeepCount(t *testing.T) {
 	bgColorCtx := &handler.HitCounterContext{Context: e.NewContext(bgColorR, bgColorW)}
 	bgColorCtx.Set("ckid", "test")
 	bgColorCtx.Set("host", "github.com")
-	bgColorCtx.Set("path", "gjbae1212/hit-counter")
+	bgColorCtx.Set("path", "用户名/仓库名")
 	bgColorCtx.Set("title", "")
 	bgColorCtx.Set("title_bg", "#111")
 	bgColorCtx.Set("count_bg", "#222")
@@ -89,7 +89,7 @@ func TestHandler_KeepCount(t *testing.T) {
 	edgeCtx := &handler.HitCounterContext{Context: e.NewContext(edgeR, edgeW)}
 	edgeCtx.Set("ckid", "test")
 	edgeCtx.Set("host", "github.com")
-	edgeCtx.Set("path", "gjbae1212/hit-counter")
+	edgeCtx.Set("path", "用户名/仓库名")
 	edgeCtx.Set("title", "")
 	edgeCtx.Set("title_bg", "")
 	edgeCtx.Set("count_bg", "")
@@ -107,7 +107,7 @@ func TestHandler_KeepCount(t *testing.T) {
 	iconCtx := &handler.HitCounterContext{Context: e.NewContext(iconR, iconW)}
 	iconCtx.Set("ckid", "test")
 	iconCtx.Set("host", "github.com")
-	iconCtx.Set("path", "gjbae1212/hit-counter")
+	iconCtx.Set("path", "用户名/仓库名")
 	iconCtx.Set("title", "")
 	iconCtx.Set("title_bg", "")
 	iconCtx.Set("count_bg", "")
@@ -125,7 +125,7 @@ func TestHandler_KeepCount(t *testing.T) {
 	iconWithColorCtx := &handler.HitCounterContext{Context: e.NewContext(iconWithColorR, iconWithColorW)}
 	iconWithColorCtx.Set("ckid", "test")
 	iconWithColorCtx.Set("host", "github.com")
-	iconWithColorCtx.Set("path", "gjbae1212/hit-counter")
+	iconWithColorCtx.Set("path", "用户名/仓库名")
 	iconWithColorCtx.Set("title", "")
 	iconWithColorCtx.Set("title_bg", "")
 	iconWithColorCtx.Set("count_bg", "")
@@ -211,7 +211,7 @@ func TestHandler_IncrCount(t *testing.T) {
 	defaultCtx := &handler.HitCounterContext{Context: e.NewContext(defaultR, defaultW)}
 	defaultCtx.Set("ckid", "test")
 	defaultCtx.Set("host", "github.com")
-	defaultCtx.Set("path", "gjbae1212/hit-counter-default")
+	defaultCtx.Set("path", "用户名/仓库名-default")
 	defaultCtx.Set("title", " ")
 	defaultCtx.Set("title_bg", " ")
 	defaultCtx.Set("count_bg", " ")
@@ -229,7 +229,7 @@ func TestHandler_IncrCount(t *testing.T) {
 	titleCtx := &handler.HitCounterContext{Context: e.NewContext(titleR, titleW)}
 	titleCtx.Set("ckid", "test")
 	titleCtx.Set("host", "github.com")
-	titleCtx.Set("path", "gjbae1212/hit-counter-title")
+	titleCtx.Set("path", "用户名/仓库名-title")
 	titleCtx.Set("title", " hello ")
 	titleCtx.Set("title_bg", "")
 	titleCtx.Set("count_bg", "")
@@ -247,7 +247,7 @@ func TestHandler_IncrCount(t *testing.T) {
 	bgColorCtx := &handler.HitCounterContext{Context: e.NewContext(bgColorR, bgColorW)}
 	bgColorCtx.Set("ckid", "test")
 	bgColorCtx.Set("host", "github.com")
-	bgColorCtx.Set("path", "gjbae1212/hit-counter-bg-color")
+	bgColorCtx.Set("path", "用户名/仓库名-color")
 	bgColorCtx.Set("title", "")
 	bgColorCtx.Set("title_bg", "#111")
 	bgColorCtx.Set("count_bg", "#222")
@@ -265,7 +265,7 @@ func TestHandler_IncrCount(t *testing.T) {
 	edgeCtx := &handler.HitCounterContext{Context: e.NewContext(edgeR, edgeW)}
 	edgeCtx.Set("ckid", "test")
 	edgeCtx.Set("host", "github.com")
-	edgeCtx.Set("path", "gjbae1212/hit-counter-edge")
+	edgeCtx.Set("path", "用户名/仓库名-edge")
 	edgeCtx.Set("title", "")
 	edgeCtx.Set("title_bg", "")
 	edgeCtx.Set("count_bg", "")
@@ -326,7 +326,7 @@ func TestHandler_IncrCount(t *testing.T) {
 		hctx := &handler.HitCounterContext{Context: e.NewContext(r, w)}
 		hctx.Set("ckid", "test")
 		hctx.Set("host", "github.com")
-		hctx.Set("path", "gjbae1212/hit-counter")
+		hctx.Set("path", "用户名/仓库名")
 		hctx.Set("title", "")
 		hctx.Set("title_bg", "")
 		hctx.Set("count_bg", "")
