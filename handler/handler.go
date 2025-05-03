@@ -7,12 +7,12 @@ import (
 	"runtime"
 	"time"
 
-	task "github.com/gjbae1212/go-async-task"
-	badge "github.com/gjbae1212/go-counter-badge/badge"
-	websocket "github.com/gjbae1212/go-ws-broadcast"
-	"github.com/gjbae1212/hit-counter/counter"
-	"github.com/gjbae1212/hit-counter/env"
-	"github.com/gjbae1212/hit-counter/internal"
+	task "github.com/cn1095/go-async-task"
+	badge "github.com/cn1095/go-counter-badge/badge"
+	websocket "github.com/cn1095/go-ws-broadcast"
+	"github.com/cn1095/hit-counter/counter"
+	"github.com/cn1095/hit-counter/env"
+	"github.com/cn1095/hit-counter/internal"
 	"github.com/go-redis/redis/v8"
 	cache "github.com/patrickmn/go-cache"
 )
@@ -36,7 +36,7 @@ type Handler struct {
 // NewHandler creates  handler object.
 func NewHandler(redisAddr string) (*Handler, error) {
 	if redisAddr == "" {
-		return nil, fmt.Errorf("[err] NewHandler %w", internal.ErrorEmptyParams)
+		return nil, fmt.Errorf("[错误] NewHandler %w", internal.ErrorEmptyParams)
 	}
 
 	// create local cache
@@ -52,7 +52,7 @@ func NewHandler(redisAddr string) (*Handler, error) {
 	})
 	ctr, err := counter.NewCounter(counter.WithRedisClient(redisClient))
 	if err != nil {
-		return nil, fmt.Errorf("[err] NewHandler %w", err)
+		return nil, fmt.Errorf("[错误] NewHandler %w", err)
 	}
 
 	// create async task
@@ -65,7 +65,7 @@ func NewHandler(redisAddr string) (*Handler, error) {
 		}),
 	)
 	if err != nil {
-		return nil, fmt.Errorf("[err] NewHandler %w", err)
+		return nil, fmt.Errorf("[错误] NewHandler %w", err)
 	}
 
 	// create websocket breaker
@@ -75,7 +75,7 @@ func NewHandler(redisAddr string) (*Handler, error) {
 			internal.SentryError(err)
 		}))
 	if err != nil {
-		return nil, fmt.Errorf("[err] NewHandler %w", err)
+		return nil, fmt.Errorf("[错误] NewHandler %w", err)
 	}
 
 	// template
@@ -86,13 +86,13 @@ func NewHandler(redisAddr string) (*Handler, error) {
 
 	indexTemplate, err := template.ParseFiles(filepath.Join(internal.GetRoot(), "view", indexName))
 	if err != nil {
-		return nil, fmt.Errorf("[err] NewHandler %w", err)
+		return nil, fmt.Errorf("[错误] NewHandler %w", err)
 	}
 
 	// badge generator
 	badgeWriter, err := badge.NewWriter()
 	if err != nil {
-		return nil, fmt.Errorf("[err] NewHandler %w", err)
+		return nil, fmt.Errorf("[错误] NewHandler %w", err)
 	}
 
 	return &Handler{
