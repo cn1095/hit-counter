@@ -5,9 +5,9 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/gjbae1212/hit-counter/handler"
+	"github.com/cn1095/hit-counter/handler"
 	api_handler "github.com/gjbae1212/hit-counter/handler/api"
-	"github.com/gjbae1212/hit-counter/internal"
+	"github.com/cn1095/hit-counter/internal"
 	"github.com/labstack/echo/v4"
 )
 
