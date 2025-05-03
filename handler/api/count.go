@@ -9,9 +9,9 @@ import (
 	"time"
 
 	"github.com/cespare/xxhash"
-	"github.com/gjbae1212/hit-counter/counter"
-	"github.com/gjbae1212/hit-counter/handler"
-	"github.com/gjbae1212/hit-counter/internal"
+	"github.com/cn1095/hit-counter/counter"
+	"github.com/cn1095/hit-counter/handler"
+	"github.com/cn1095/hit-counter/internal"
 	"github.com/labstack/echo/v4"
 	"github.com/wcharczuk/go-chart"
 )
