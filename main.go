@@ -1,4 +1,4 @@
-package main // import "github.com/gjbae1212/hit-counter"
+package main // import "github.com/cn1095/hit-counter"
 
 import (
 	"flag"
@@ -6,11 +6,11 @@ import (
 	"os"
 	"runtime"
 
-	"github.com/gjbae1212/hit-counter/internal"
+	"github.com/cn1095/hit-counter/internal"
 
 	"path/filepath"
 
-	"github.com/gjbae1212/hit-counter/env"
+	"github.com/cn1095/hit-counter/env"
 	"github.com/labstack/echo/v4"
 )
 
