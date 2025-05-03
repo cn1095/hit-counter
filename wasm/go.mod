@@ -1,4 +1,4 @@
-module github.com/gjbae1212/hit-counter/wasm
+module github.com/cn1095/hit-counter/wasm
 
 go 1.13
 
