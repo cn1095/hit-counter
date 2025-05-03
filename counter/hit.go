@@ -8,7 +8,7 @@ import (
 
 	"github.com/go-redis/redis/v8"
 
-	"github.com/gjbae1212/hit-counter/internal"
+	"github.com/cn1095/hit-counter/internal"
 )
 
 var (
@@ -19,7 +19,7 @@ var (
 // IncreaseHitOfDaily increases daily count.
 func (d *db) IncreaseHitOfDaily(ctx context.Context, id string, t time.Time) (*Score, error) {
 	if id == "" || t.IsZero() {
-		return nil, fmt.Errorf("[err] IncreaseHitOfDaily  %w", internal.ErrorEmptyParams)
+		return nil, fmt.Errorf("[错误] IncreaseHitOfDaily  %w", internal.ErrorEmptyParams)
 	}
 
 	pipe := d.redisClient.Pipeline()
@@ -31,7 +31,7 @@ func (d *db) IncreaseHitOfDaily(ctx context.Context, id string, t time.Time) (*S
 	pipe.Expire(ctx, key, time.Hour*24*60)
 
 	if _, err := pipe.Exec(ctx); err != nil {
-		return nil, fmt.Errorf("[err] IncreaseHitOfDaily %w", err)
+		return nil, fmt.Errorf("[错误] IncreaseHitOfDaily %w", err)
 	}
 
 	incr, _ := incrResult.Result()
@@ -41,13 +41,13 @@ func (d *db) IncreaseHitOfDaily(ctx context.Context, id string, t time.Time) (*S
 // IncreaseHitOfTotal increases accumulate count.
 func (d *db) IncreaseHitOfTotal(ctx context.Context, id string) (*Score, error) {
 	if id == "" {
-		return nil, fmt.Errorf("[err] IncreaseHitOfTotal %w", internal.ErrorEmptyParams)
+		return nil, fmt.Errorf("[错误] IncreaseHitOfTotal %w", internal.ErrorEmptyParams)
 	}
 
 	key := fmt.Sprintf(hitTotalFormat, id)
 	v, err := d.redisClient.Incr(ctx, key).Result()
 	if err != nil {
-		return nil, fmt.Errorf("[err] IncreaseHitOfTotal %w", err)
+		return nil, fmt.Errorf("[错误] IncreaseHitOfTotal %w", err)
 	}
 	return &Score{Name: key, Value: v}, nil
 }
@@ -55,7 +55,7 @@ func (d *db) IncreaseHitOfTotal(ctx context.Context, id string) (*Score, error) 
 // GetHitOfDaily returns daily score.
 func (d *db) GetHitOfDaily(ctx context.Context, id string, t time.Time) (*Score, error) {
 	if id == "" || t.IsZero() {
-		return nil, fmt.Errorf("[err] GetHitOfDaily empty param")
+		return nil, fmt.Errorf("[错误] GetHitOfDaily empty param")
 	}
 
 	daily := internal.TimeToDailyStringFormat(t)
@@ -65,12 +65,12 @@ func (d *db) GetHitOfDaily(ctx context.Context, id string, t time.Time) (*Score,
 	if err == redis.Nil {
 		return nil, nil
 	} else if err != nil {
-		return nil, fmt.Errorf("[err] GetHitOfDaily %w", err)
+		return nil, fmt.Errorf("[错误] GetHitOfDaily %w", err)
 	}
 
 	rt, err := strconv.ParseInt(v, 10, 64)
 	if err != nil {
-		return nil, fmt.Errorf("[err] GetHitOfDaily %w", err)
+		return nil, fmt.Errorf("[错误] GetHitOfDaily %w", err)
 	}
 
 	return &Score{Name: key, Value: rt}, nil
@@ -79,7 +79,7 @@ func (d *db) GetHitOfDaily(ctx context.Context, id string, t time.Time) (*Score,
 // GetHitOfTotal returns  accumulate score.
 func (d *db) GetHitOfTotal(ctx context.Context, id string) (*Score, error) {
 	if id == "" {
-		return nil, fmt.Errorf("[err] GetHitOfTotal empty param")
+		return nil, fmt.Errorf("[错误] GetHitOfTotal empty param")
 	}
 
 	key := fmt.Sprintf(hitTotalFormat, id)
@@ -87,12 +87,12 @@ func (d *db) GetHitOfTotal(ctx context.Context, id string) (*Score, error) {
 	if err == redis.Nil {
 		return nil, nil
 	} else if err != nil {
-		return nil, fmt.Errorf("[err] GetHitOfTotal %w", err)
+		return nil, fmt.Errorf("[错误] GetHitOfTotal %w", err)
 	}
 
 	rt, err := strconv.ParseInt(v, 10, 64)
 	if err != nil {
-		return nil, fmt.Errorf("[err] GetHitOfTotal %w", err)
+		return nil, fmt.Errorf("[错误] GetHitOfTotal %w", err)
 	}
 
 	return &Score{Name: key, Value: rt}, nil
@@ -101,7 +101,7 @@ func (d *db) GetHitOfTotal(ctx context.Context, id string) (*Score, error) {
 // GetHitOfDailyAndTotal returns daily score and  accumulate score.
 func (d *db) GetHitOfDailyAndTotal(ctx context.Context, id string, t time.Time) (daily *Score, total *Score, retErr error) {
 	if id == "" || t.IsZero() {
-		retErr = fmt.Errorf("[err] GetHitOfDailyAndTotal %w", internal.ErrorEmptyParams)
+		retErr = fmt.Errorf("[错误] GetHitOfDailyAndTotal %w", internal.ErrorEmptyParams)
 		return
 	}
 
@@ -112,14 +112,14 @@ func (d *db) GetHitOfDailyAndTotal(ctx context.Context, id string, t time.Time) 
 	if err == redis.Nil {
 		return
 	} else if err != nil {
-		retErr = fmt.Errorf("[err] GetHitOfDailyAndTotal %w", err)
+		retErr = fmt.Errorf("[错误] GetHitOfDailyAndTotal %w", err)
 		return
 	}
 
 	if v[0] != nil {
 		dailyValue, err := strconv.ParseInt(v[0].(string), 10, 64)
 		if err != nil {
-			retErr = fmt.Errorf("[err] GetHitOfDailyAndTotal %w", err)
+			retErr = fmt.Errorf("[错误] GetHitOfDailyAndTotal %w", err)
 			return
 		}
 		daily = &Score{Name: key1, Value: dailyValue}
@@ -128,7 +128,7 @@ func (d *db) GetHitOfDailyAndTotal(ctx context.Context, id string, t time.Time) 
 	if v[1] != nil {
 		totalValue, err := strconv.ParseInt(v[1].(string), 10, 64)
 		if err != nil {
-			retErr = fmt.Errorf("[err] GetHitOfDailyAndTotal %w", err)
+			retErr = fmt.Errorf("[错误] GetHitOfDailyAndTotal %w", err)
 			return
 		}
 		total = &Score{Name: key2, Value: totalValue}
@@ -139,7 +139,7 @@ func (d *db) GetHitOfDailyAndTotal(ctx context.Context, id string, t time.Time) 
 // GetHitOfDailyByRange returns daily scores with range.
 func (d *db) GetHitOfDailyByRange(ctx context.Context, id string, timeRange []time.Time) (scores []*Score, retErr error) {
 	if id == "" || len(timeRange) == 0 {
-		retErr = fmt.Errorf("[err] GetHitOfDailyByRange %w", internal.ErrorEmptyParams)
+		retErr = fmt.Errorf("[错误] GetHitOfDailyByRange %w", internal.ErrorEmptyParams)
 		return
 	}
 
@@ -159,7 +159,7 @@ func (d *db) GetHitOfDailyByRange(ctx context.Context, id string, timeRange []ti
 		if v[i] != nil {
 			dailyValue, err := strconv.ParseInt(v[i].(string), 10, 64)
 			if err != nil {
-				err = fmt.Errorf("[err] GetHitOfDailyByRange %w", err)
+				err = fmt.Errorf("[错误] GetHitOfDailyByRange %w", err)
 				return
 			}
 			scores = append(scores, &Score{Name: key, Value: dailyValue})
