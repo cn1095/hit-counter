@@ -9,9 +9,9 @@ import (
 	"time"
 
 	sentryecho "github.com/getsentry/sentry-go/echo"
-	"github.com/gjbae1212/hit-counter/env"
-	"github.com/gjbae1212/hit-counter/handler"
-	"github.com/gjbae1212/hit-counter/internal"
+	"github.com/cn1095/hit-counter/env"
+	"github.com/cn1095/hit-counter/handler"
+	"github.com/cn1095/hit-counter/internal"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 )
