@@ -3,8 +3,8 @@ package api_handler
 import (
 	"fmt"
 
-	"github.com/gjbae1212/hit-counter/handler"
-	"github.com/gjbae1212/hit-counter/internal"
+	"github.com/cn1095/hit-counter/handler"
+	"github.com/cn1095/hit-counter/internal"
 )
 
 type Handler struct {
@@ -14,7 +14,7 @@ type Handler struct {
 // NewHandler creates api handler object.
 func NewHandler(h *handler.Handler) (*Handler, error) {
 	if h == nil {
-		return nil, fmt.Errorf("[err] api handler %w", internal.ErrorEmptyParams)
+		return nil, fmt.Errorf("[错误] api handler %w", internal.ErrorEmptyParams)
 	}
 	return &Handler{Handler: h}, nil
 }
