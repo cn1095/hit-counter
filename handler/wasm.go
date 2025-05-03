@@ -5,7 +5,7 @@ import (
 	"net/http"
 	_ "embed"
 )
-//go:embed /view/hits.wasm
+//go:embed view/hits.wasm
 var embeddedFile embed.FS // 嵌入 hits.wasm 文件
 // Wasm is API for serving wasm file.
 func (h *Handler) Wasm(c echo.Context) error {
