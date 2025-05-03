@@ -93,8 +93,8 @@ jobs:
             export GOARM=$GOarm
             export GOMIPS=$GOmips
             go build -ldflags="-s -w"
-            file hit
-            mv -f hit hit-${NAME}
+            file hit-counter
+            mv -f hit-counter hit-${NAME}
             echo "build_time=$(date '+%Y年%m月%d日%H:%M:%S' | jq -sRr @uri)" >> $GITHUB_ENV
             echo "build_tag=$(date '+%Y-%m-%d')" >> $GITHUB_ENV
             hit -h || true
