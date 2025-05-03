@@ -5,7 +5,7 @@ import (
 	"testing"
 
 	"github.com/alicebob/miniredis"
-	"github.com/gjbae1212/hit-counter/handler"
+	"github.com/cn1095/hit-counter/handler"
 	"github.com/stretchr/testify/assert"
 )
 
