@@ -13,17 +13,17 @@ import (
 
 func AddRoute(e *echo.Echo, redisAddr string) error {
 	if e == nil {
-		return fmt.Errorf("[错误] 添加路由时参数为空")
+		return fmt.Errorf("[错误] AddRoute参数为空")
 	}
 
 	h, err := handler.NewHandler(redisAddr)
 	if err != nil {
-		return fmt.Errorf("[错误] 添加路由 %w", err)
+		return fmt.Errorf("[错误] AddRoute %w", err)
 	}
 
 	api, err := api_handler.NewHandler(h)
 	if err != nil {
-		return fmt.Errorf("[错误] 添加路由 %w", err)
+		return fmt.Errorf("[错误] AddRoute %w", err)
 	}
 
 	// error handler
@@ -50,7 +50,7 @@ func AddRoute(e *echo.Echo, redisAddr string) error {
 	// group /api/count
 	g1, err := groupApiCount()
 	if err != nil {
-		return fmt.Errorf("[错误] 添加路由 %w", err)
+		return fmt.Errorf("[错误] AddRoute %w", err)
 	}
 	count := e.Group("/api/count", g1...)
 	// badge
@@ -63,7 +63,7 @@ func AddRoute(e *echo.Echo, redisAddr string) error {
 	// group /api/rank
 	g2, err := groupApiRank()
 	if err != nil {
-		return fmt.Errorf("[错误] 添加路由 %w", err)
+		return fmt.Errorf("[错误] AddRoute %w", err)
 	}
 	rank := e.Group("/api/rank", g2...)
 	_ = rank
