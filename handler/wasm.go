@@ -13,7 +13,7 @@ func (h *Handler) Wasm(c echo.Context) error {
 	hctx.Response().Header().Set("Content-Encoding", "gzip")
 
 	// 从嵌入的文件系统中读取 hits.wasm
-	file, err := embeddedFiles.Open("view/hits.wasm")
+	file, err := embeddedFile.Open("view/hits.wasm")
 	if err != nil {
 		return echo.NewHTTPError(http.StatusInternalServerError, "无法读取 wasm 文件")
 	}
