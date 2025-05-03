@@ -5,7 +5,7 @@ import (
 	"time"
 
 	"github.com/getsentry/sentry-go"
-	"github.com/gjbae1212/hit-counter/env"
+	"github.com/cn1095/hit-counter/env"
 	"github.com/labstack/echo/v4"
 
 	"fmt"
