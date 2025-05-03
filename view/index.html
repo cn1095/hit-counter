@@ -1,16 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 
 <head>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0 user-scalable=no" />
-    <meta name="description" content="Easy way to know how many visitors are viewing your Github, Website, Notion.">
-    <meta name="author" content="gjbae1212@gmail.com">
+    <meta name="description" content="了解有多少访问者正在查看您的Github、网站和Notion的简单方法.">
 
     <meta property="og:title" content="HITS">
     <meta property="og:image" content="https://hits.seeyoufarm.com/icon.png">
-    <meta property="og:description" content="Easy way to know how many visitors are viewing your Github, Website, Notion.">
+    <meta property="og:description" content="了解有多少访问者正在查看您的Github、网站和Notion的简单方法.">
 
     <title>HITS</title>
     <!-- golang wasm -->
@@ -63,69 +62,52 @@
 <body id="page-top">
 
 <!-- Navigation -->
-<nav class="navbar navbar-expand-lg fixed-top text-uppercase" id="mainNav">
-    <div class="container">
-        <a class="navbar-brand img_background js-scroll-trigger" href="#page-top"></a>
-        <a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fhits.seeyoufarm.com"/></a>
-        <button class="navbar-toggler navbar-toggler-right btn btn-primary text-uppercase text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            Menu
-            <i class="fas fa-bars"></i>
-        </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item mx-0 mx-lg-1">
-                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#badge">GENERATE BADGE</a>
+                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#badge">生成徽章</a>
                 </li>
                 <li class="nav-item mx-0 mx-lg-1">
-                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#rank">SHOW RANK</a>
+                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#rank">显示排名</a>
                 </li>
                 <li class="nav-item mx-0 mx-lg-1">
-                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#history">SHOW HISTORY</a>
+                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#history">显示历史</a>
                 </li>
                 <li class="nav-item mx-0 mx-lg-1">
-                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#stream">SHOW STREAM</a>
+                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#stream">显示流</a>
                 </li>
             </ul>
         </div>
         <!-- Place this tag where you want the button to render. -->
-        <a class="github-button" href="https://github.com/gjbae1212/hit-counter" data-color-scheme="no-preference: dark; light: light; dark: dark;" data-size="large" data-show-count="true" aria-label="Star gjbae1212/hit-counter on GitHub">Star</a>
     </div>
 </nav>
 
 <!-- Notice -->
-<div class="notice notice-slide-down">
-    <button class="close_btn"></button>
-    <p>If you find <b>HITS</b> helpful,</p>
-    <p>please give it a star on GitHub!</p>
-    <div class="text-align-right">
-        <a href="https://github.com/gjbae1212/hit-counter" class="notice_btn">GITHUB <i class="fab fa-github"></i></a>
-    </div>
-</div>
 
 <!-- Header -->
 <header class="masthead gradient-bg-primary text-white text-center">
     <div class="container">
         <h1 class="text-uppercase mb-5">START <img src="/hits-logo-secondary.svg" alt="" class="main-title-logo"></h1>
-        <h2 class="font-weight-light mb-0 subtitle">Easy way to know how many visitors are viewing your Github, Website, Notion.</h2>
+        <h2 class="font-weight-light mb-0 subtitle">了解有多少访问者正在查看您的Github、网站和Notion的简单方法.</h2>
     </div>
 </header>
 
 <!-- Badge Section -->
 <section id="badge">
     <div class="container">
-        <h2 class="text-center text-uppercase text-secondary mb-5 flex-cetner">GENERATE BADGE<i class="material-icons title-icon">link</i></h2>
+        <h2 class="text-center text-uppercase text-secondary mb-5 flex-cetner">生成徽章<i class="material-icons title-icon">link</i></h2>
         <br/>
 
         <div class="row mb-4">
             <div class="col-lg-8 mx-auto">
                 <form novalidate="novalidate" onsubmit="return false;">
                     <div class="control-group">
-                        <label class="url-label" for="badge_url">TARGET URL</label>
+                        <label class="url-label" for="badge_url">目标站点</label>
                         <input class="form-control url-input" id="badge_url" type="text" placeholder="URL"
-                               required="required" data-validation-required-message="Please enter your sites or github"
-                               value="https://github.com/gjbae1212/hit-counter" onkeyup="refreshBadge()">
+                               required="required" data-validation-required-message="请输入您的网站或github"
+                               value="https://github.com/用户名/仓库名" onkeyup="refreshBadge()">
                         <small class="form-text text-muted url-small">
-                            Type your URL. Then you will get generated MARKDOWN and HTML LINK.
+                            输入您的URL，然后您将获得生成的MARKDOWN和HTML链接.
                         </small>
                     </div>
                 </form>
@@ -136,10 +118,10 @@
         <div class="row">
             <div class="col-lg-8 mx-auto mb-2">
                 <label class="url-label badge-options-title" for="">
-                    OPTIONS
+                   选项
                     <br>
                     <small class="text-muted">
-                        Customize the style of your badge.
+                        自定义徽章风格
                     </small>
                 </label>
             </div>
@@ -151,7 +133,7 @@
 
         <div class="row justify-content-center">
             <div class="col-lg-4 col-sm-6 input-group mb-3 d-flex align-items-center icon-selector-container">
-                <button id="icon-selector-btn" type="button" class="btn btn-outline-secondary mr-4">+ Add Icon</button>
+                <button id="icon-selector-btn" type="button" class="btn btn-outline-secondary mr-4">+ 添加图标</button>
                 <div class="icon-selector shadow-lg hidden">
                     <div class="icon-search-input-container">
                         <input id="search-icon-input" type="text" class="form-control" placeholder="search">
@@ -162,7 +144,7 @@
             </div>
             <div class="col-lg-4 col-sm-6 input-group mb-3 d-flex align-items-center">
                 <div class="input-group-prepend">
-                    <span class="input-group-text mr-5">ICON COLOR</span>
+                    <span class="input-group-text mr-5">图标颜色</span>
                 </div>
                 <span class="icon-color-picker"></span>
             </div>
@@ -170,16 +152,16 @@
         <div class="row justify-content-center">
             <div class="col-lg-4 input-group mb-3">
                 <div class="input-group-prepend">
-                    <label for="" class="input-group-text">BORDER</label>
+                    <label for="" class="input-group-text">边框样式</label>
                 </div>
                 <select id="badge_edge_flat" class="custom-select" onchange="refreshBadge()">
-                    <option value="true">FLAT</option>
-                    <option value="false" selected>ROUND</option>
+                    <option value="true">扁平</option>
+                    <option value="false" selected>圆弧</option>
                 </select>
             </div>
             <div class="col-lg-4 input-group mb-3">
                 <div class="input-group-prepend">
-                    <span class="input-group-text">TITLE</span>
+                    <span class="input-group-text">标题</span>
                 </div>
                 <input type="text" id="badge_title" class="form-control" value="hits" onkeyup="refreshBadge()">
             </div>
@@ -188,13 +170,13 @@
         <div class="row justify-content-center mb-5">
             <div class="col-lg-4 input-group mb-3 d-flex align-items-center">
                 <div class="input-group-prepend">
-                    <span class="input-group-text mr-5">TITLE BG COLOR</span>
+                    <span class="input-group-text mr-5">标题颜色</span>
                 </div>
                 <span class="title-bg-color-picker"></span>
             </div>
             <div class="col-lg-4 input-group mb-3 d-flex align-items-center">
                 <div class="input-group-prepend">
-                    <span class="input-group-text mr-5">COUNT BG COLOR</span>
+                    <span class="input-group-text mr-5">计数颜色</span>
                 </div>
                 <span class="count-bg-color-picker"></span>
             </div>
@@ -208,29 +190,29 @@
                         <!-- mark down-->
                         [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fgjbae1212%2Fhit-counter)](https://hits.seeyoufarm.com)
                     </p>
-                    <button onclick="copyToClipboard('#badge_markdown')" class="btn copy-button">COPY</button>
+                    <button onclick="copyToClipboard('#badge_markdown')" class="btn copy-button">复制</button>
                 </div>
                 <br />
 
                 <div>
-                    <h7 class="text-center text-uppercase text-secondary mb-0">HTML LINK</h7><br />
+                    <h7 class="text-center text-uppercase text-secondary mb-0">HTML 链接</h7><br />
                     <div class="text-box-container">
                         <p class="text-box" id="badge_link">
                             <!-- badge link-->
                             &lt;a href="https://hits.seeyoufarm.com"&gt;&lt;img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fgjbae1212%2Fhit-counter"/&gt;&lt;/a&gt;
                         </p>
-                        <button onclick="copyToClipboard('#badge_link');" class="btn copy-button">COPY</button>
+                        <button onclick="copyToClipboard('#badge_link');" class="btn copy-button">复制</button>
                     </div>
                 </div>
                 <br />
                 <div>
-                    <h7 class="text-center text-uppercase text-secondary mb-0">EMBED URL (NOTION)</h7><br />
+                    <h7 class="text-center text-uppercase text-secondary mb-0">嵌入URL(NOTION)</h7><br />
                     <div class="text-box-container">
                         <p class="text-box" id="embed_link">
                             <!-- embed url-->
                             https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fgjbae1212%2Fhit-counter
                         </p>
-                        <button onclick="copyToClipboard('#embed_link');" class="btn copy-button">COPY</button>
+                        <button onclick="copyToClipboard('#embed_link');" class="btn copy-button">复制</button>
                     </div>
                 </div>
 
@@ -243,11 +225,11 @@
 <!-- Rank Section -->
 <section class="secondary-bg text-white mb-0" id="rank">
     <div class="container">
-        <h2 class="text-center text-uppercase text-secondary mb-5 flex-cetner">SHOW RANK<i class="material-icons title-icon">military_tech</i></h2>
+        <h2 class="text-center text-uppercase text-secondary mb-5 flex-cetner">显示排名<i class="material-icons title-icon">military_tech</i></h2>
         <br/>
         <div class="show-rank-content row">
             <div class="col-lg-8 mx-auto">
-                <h4 class="mb-0 rank-subtitle"> <b>TOP 10</b> github projects using HITS.</h4>
+                <h4 class="mb-0 rank-subtitle"> <b>前 10</b> 使用HITS的github项目.</h4>
                 <br/>
                 <div id="rank_view">
                     {{range .Ranks}}
@@ -262,24 +244,24 @@
 <!--History Section -->
 <section id="history">
     <div class="container">
-        <h2 class="text-center text-uppercase text-secondary mb-2 flex-cetner">SHOW HISTORY<i class="material-icons title-icon">show_chart</i></h2>
+        <h2 class="text-center text-uppercase text-secondary mb-2 flex-cetner">显示历史记录<i class="material-icons title-icon">show_chart</i></h2>
         <br/>
-        <h4 class="text-center text-uppercase text-secondary-light mb-5">History of daily hits in recently 2 monthly</h4>
+        <h4 class="text-center text-uppercase text-secondary-light mb-5">最近2个月的每日点击历史</h4>
         <br/>
         <br/>
         <div class="row">
             <div class="col-lg-8 mx-auto">
                 <form novalidate="novalidate" onsubmit="return false;">
                     <div class="control-group">
-                        <label class="url-label" for="history_url">TARGET URL</label>
-                        <input class="form-control url-input" id="history_url" type="text" placeholder="URL" required="required" data-validation-required-message="Please enter your sites or github" value="https://github.com/gjbae1212/hit-counter">
+                        <label class="url-label" for="history_url">目标站点</label>
+                        <input class="form-control url-input" id="history_url" type="text" placeholder="URL" required="required" data-validation-required-message="请输入您的网站或github" value="https://github.com/用户名/仓库名">
                         <small class="form-text text-muted url-small">
-                            Type URL what you want to get the history of
+                            输入要获取历史记录的URL
                         </small>
                     </div>
                     <br/><br/>
                     <div class="text-center">
-                        <button id="history_button" class="btn btn-primary btn-lg" onclick="showGraph()">SHOW GRAPH</button>
+                        <button id="history_button" class="btn btn-primary btn-lg" onclick="showGraph()">显示图表</button>
                     </div>
                     <br/><br/>
 
@@ -290,7 +272,7 @@
     <div class="container container-mobile-fill">
         <div id="history_view">
             <div class="wating-graph ">
-                Press <b class="text-primary">SHOW GRAPH</b>
+                按 <b class="text-primary">显示图表</b>
             </div>
         </div>
     </div>
@@ -299,9 +281,9 @@
 <!--Stream Section -->
 <section class="secondary-bg text-white mb-0" id="stream">
     <div class="container">
-        <h2 class="text-center text-uppercase text-secondary mb-2 flex-cetner">SHOW STREAM<i class="material-icons title-icon">history</i></h2>
+        <h2 class="text-center text-uppercase text-secondary mb-2 flex-cetner">显示流<i class="material-icons title-icon">history</i></h2>
         <br/>
-        <h4 class="text-center text-uppercase text-secondary-light mb-5 font-weight-light">It is showing projects tracked by the HITS at this time.</h4>
+        <h4 class="text-center text-uppercase text-secondary-light mb-5 font-weight-light">它显示了HITS目前跟踪的项目.</h4>
         <br/>
         <div class="row">
             <div class="col-lg-8 mx-auto alert stream-view-content" id="stream_view">
@@ -317,7 +299,7 @@
             <div class="col-md-4 mb-5 mb-lg-0">
             </div>
             <div class="col-md-4 mb-5 mb-lg-0">
-                <h4 class="text-uppercase mb-4">Powered BY</h4>
+                <h4 class="text-uppercase mb-4">技术支持：</h4>
                 <p class="lead mb-0"><a href="https://github.com/gjbae1212">GJBAE1212</a></p>
             </div>
         </div>
@@ -352,9 +334,9 @@
 
 <!-- copy and paste -->
 <script type="text/javascript">
-    let domain = "https://hits.seeyoufarm.com";
-    let incrFormat = "https://hits.seeyoufarm.com/api/count/incr/badge.svg";
-    let keepFormat       = "https://hits.seeyoufarm.com/api/count/keep/badge.svg";
+    let domain = "";
+    let incrFormat = "/api/count/incr/badge.svg";
+    let keepFormat       = "/api/count/keep/badge.svg";
     let markdownFormat = "[![Hits]({0})]({1})";
     let showFormat     = "<a href=\"{0}\"><img src=\"{1}\"/></a>";
     let linkFormat     = "&lt;a href=\"{0}\"&gt;&lt;img src=\"{1}\"/&gt;&lt;/a&gt;";
@@ -409,9 +391,9 @@
             document.getElementById("embed_link").innerHTML =  incrURL;
             document.getElementById("badge_show").src = keepURL;
         }catch(e) {
-            document.getElementById("badge_markdown").innerHTML = "Invalid URL";
-            document.getElementById("badge_link").innerHTML = "Invalid URL";
-            document.getElementById("embed_link").innerHTML = "Invalid URL";
+            document.getElementById("badge_markdown").innerHTML = "无效的URL";
+            document.getElementById("badge_link").innerHTML = "无效的URL";
+            document.getElementById("embed_link").innerHTML = "无效的URL";
             document.getElementById("badge_show").src = "";
         }
     }
