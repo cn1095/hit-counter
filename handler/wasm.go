@@ -3,7 +3,7 @@ package handler
 import (
 	"path/filepath"
 
-	"github.com/gjbae1212/hit-counter/internal"
+	"github.com/cn1095/hit-counter/internal"
 	"github.com/labstack/echo/v4"
 )
 
