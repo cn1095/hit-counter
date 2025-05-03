@@ -6,8 +6,8 @@ import (
 	"time"
 
 	"github.com/davecgh/go-spew/spew"
-	"github.com/gjbae1212/hit-counter/counter"
-	"github.com/gjbae1212/hit-counter/handler"
+	"github.com/cn1095/hit-counter/counter"
+	"github.com/cn1095/hit-counter/handler"
 	"github.com/google/go-cmp/cmp"
 	"github.com/stretchr/testify/assert"
 )
