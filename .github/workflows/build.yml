@@ -79,8 +79,6 @@ jobs:
           go-version: 'stable'
       - name: 开始编译
         run: |
-            grep -r 'github.com/gjbae1212/hit' . 
-            exit 1
             sudo timedatectl set-timezone "Asia/Shanghai"
             go mod init hit
             go mod tidy
