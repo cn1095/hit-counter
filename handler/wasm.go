@@ -3,7 +3,7 @@ package handler
 import (
 	"github.com/labstack/echo/v4"
 	"net/http"
-	_ "embed"
+	"embed"
 )
 //go:embed view/hits.wasm
 var embeddedFile embed.FS // 嵌入 hits.wasm 文件
