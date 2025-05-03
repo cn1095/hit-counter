@@ -79,7 +79,11 @@ jobs:
           go-version: 'stable'
       - name: 开始编译
         run: |
+            grep -r 'github.com/gjbae1212/hit' . 
             sudo timedatectl set-timezone "Asia/Shanghai"
+            go clean -modcache
+            go get github.com/cn1095/go-async-task
+            go mod init hit
             go mod tidy
             export CGO_ENABLED=0
             export GOOS=$GOos
