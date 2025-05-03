@@ -80,7 +80,6 @@ jobs:
       - name: 开始编译
         run: |
             sudo timedatectl set-timezone "Asia/Shanghai"
-            go mod init hit
             go mod tidy
             export CGO_ENABLED=0
             export GOOS=$GOos
