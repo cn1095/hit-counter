@@ -8,7 +8,7 @@ import (
 	"time"
 
 	"github.com/davecgh/go-spew/spew"
-	"github.com/gjbae1212/hit-counter/internal"
+	"github.com/cn1095/hit-counter/internal"
 	"github.com/google/go-cmp/cmp"
 	"github.com/stretchr/testify/assert"
 )
