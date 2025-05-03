@@ -4,7 +4,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/gjbae1212/go-counter-badge/badge"
+	"github.com/cn1095/go-counter-badge/badge"
 
 	"github.com/stretchr/testify/assert"
 )
