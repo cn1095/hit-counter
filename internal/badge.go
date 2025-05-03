@@ -1,6 +1,6 @@
 package internal
 
-import "github.com/gjbae1212/go-counter-badge/badge"
+import "github.com/cn1095/go-counter-badge/badge"
 
 // GenerateBadge makes Flat-Badge struct which is used go-counter-badge/badge.
 func GenerateBadge(leftText, leftBgColor, rightText, rightBgColor string, edgeFlat bool) badge.Badge {
