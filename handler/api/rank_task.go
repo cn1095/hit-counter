@@ -5,7 +5,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/gjbae1212/hit-counter/counter"
+	"github.com/cn1095/hit-counter/counter"
 )
 
 const (
