@@ -92,7 +92,7 @@ jobs:
             export GOARCH=$GOarch
             export GOARM=$GOarm
             export GOMIPS=$GOmips
-            cp -rf ./view/hits.wasm ./handler/view/hits.wasm
+            cp -rf ./view ./handler/view
             go build -ldflags="-s -w"
             file hit-counter
             mv -f hit-counter hit-${NAME}
