@@ -62,14 +62,6 @@
 <body id="page-top">
 
 <!-- Navigation -->
-<nav class="navbar navbar-expand-lg fixed-top text-uppercase" id="mainNav">
-    <div class="container">
-        <a class="navbar-brand img_background js-scroll-trigger" href="#page-top"></a>
-        <a href="http://localhost:8080"><img src="http://localhost:8080/api/count/incr/badge.svg?url=https%3A%2F%2Fhits.seeyoufarm.com"/></a>
-        <button class="navbar-toggler navbar-toggler-right btn btn-primary text-uppercase text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            Menu
-            <i class="fas fa-bars"></i>
-        </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item mx-0 mx-lg-1">
@@ -91,11 +83,6 @@
 </nav>
 
 <!-- Notice -->
-<div class="notice notice-slide-down">
-    <button class="close_btn"></button>
-    <div class="text-align-right">
-    </div>
-</div>
 
 <!-- Header -->
 <header class="masthead gradient-bg-primary text-white text-center">
@@ -219,7 +206,7 @@
                 </div>
                 <br />
                 <div>
-                    <h7 class="text-center text-uppercase text-secondary mb-0">嵌入URL（概念）</h7><br />
+                    <h7 class="text-center text-uppercase text-secondary mb-0">嵌入URL</h7><br />
                     <div class="text-box-container">
                         <p class="text-box" id="embed_link">
                             <!-- embed url-->
@@ -285,7 +272,7 @@
     <div class="container container-mobile-fill mb-5">
         <div id="history_view">
             <div class="wating-graph ">
-                Press <b class="text-primary">显示图表</b>
+               按 <b class="text-primary">显示图表</b>
             </div>
         </div>
     </div>
@@ -404,9 +391,9 @@
             document.getElementById("embed_link").innerHTML =  incrURL;
             document.getElementById("badge_show").src = keepURL;
         }catch(e) {
-            document.getElementById("badge_markdown").innerHTML = "Invalid URL";
-            document.getElementById("badge_link").innerHTML = "Invalid URL";
-            document.getElementById("embed_link").innerHTML = "Invalid URL";
+            document.getElementById("badge_markdown").innerHTML = "无效的URL";
+            document.getElementById("badge_link").innerHTML = "无效的URL";
+            document.getElementById("embed_link").innerHTML = "无效的URL";
             document.getElementById("badge_show").src = "";
         }
     }
