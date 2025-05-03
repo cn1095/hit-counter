@@ -6,7 +6,7 @@ import (
 	"strconv"
 
 	"github.com/cn1095/hit-counter/handler"
-	api_handler "github.com/gjbae1212/hit-counter/handler/api"
+	api_handler "github.com/cn1095/hit-counter/handler/api"
 	"github.com/cn1095/hit-counter/internal"
 	"github.com/labstack/echo/v4"
 )
