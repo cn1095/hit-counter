@@ -1,4 +1,4 @@
-module hit
+module hit-counter
 
 go 1.20
 
