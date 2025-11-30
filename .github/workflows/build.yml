@@ -90,7 +90,7 @@ jobs:
         run: |
             sudo timedatectl set-timezone "Asia/Shanghai"
             go mod tidy
-            GOOS=js GOARCH=wasm go build -o view/hits.wasm ./wasm/
+            GOOS=js GOARCH=wasm go build -o view/hits.wasm ./wasm/mian.go
             export CGO_ENABLED=0
             export GOOS=$GOos
             export GOARCH=$GOarch
