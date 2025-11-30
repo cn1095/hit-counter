@@ -195,19 +195,23 @@ func main() {
     // 动态获取当前域名  
     window := js.Global().Get("window")  
     location := window.Get("location")  
-    currentHost := location.Get("host").String()  
-    currentProtocol := location.Get("protocol").String()  
+    hostname := location.Get("hostname").String()  
+    port := location.Get("port").String()  
+    protocol := location.Get("protocol").String()  
+      
+    // 构建完整主机  
+    currentHost := hostname  
+    if port != "" {  
+        currentHost = hostname + ":" + port  
+    }  
       
     if phase == "local" {  
-        // 本地环境使用动态获取的主机  
         defaultDomain = currentHost  
         defaultURL = fmt.Sprintf("http://%s", defaultDomain)  
         defaultWS = fmt.Sprintf("ws://%s/ws", defaultDomain)  
     } else {  
-        // 生产环境也使用动态获取的主机  
         defaultDomain = currentHost  
-        // 根据当前协议确定 HTTP/HTTPS  
-        if currentProtocol == "https:" {  
+        if protocol == "https:" {  
             defaultURL = fmt.Sprintf("https://%s", defaultDomain)  
             defaultWS = fmt.Sprintf("wss://%s/ws", defaultDomain)  
         } else {  
@@ -215,6 +219,11 @@ func main() {
             defaultWS = fmt.Sprintf("ws://%s/ws", defaultDomain)  
         }  
     }  
+      
+    // 添加调试输出  
+    println("WebSocket URL:", defaultWS)  
+    println("Host:", currentHost, "Protocol:", protocol)  
+      
     registerCallbacks()  
     c := make(chan struct{}, 0)  
     <-c  
