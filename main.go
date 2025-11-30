@@ -8,7 +8,6 @@ import (
 	"runtime"  
   
 	"github.com/cn1095/hit-counter/internal"  
-  
 	"path/filepath"  
   
 	"github.com/cn1095/hit-counter/env"  
@@ -18,11 +17,16 @@ import (
 //go:embed public/* view/*  
 var embeddedFiles embed.FS // 嵌入 public 和 view 目录中的所有文件  
   
+// EmbeddedFiles 返回嵌入的文件系统，供其他包使用  
+func EmbeddedFiles() embed.FS {  
+	return embeddedFiles  
+}  
+  
 var (  
 	address = flag.String("port", ":8080", "服务器监听地址和端口 (例如: :8080, 0.0.0.0:8080)")  
 	tls     = flag.Bool("tls", false, "启用 Let's Encrypt 自动 TLS")  
 	redis   = flag.String("redis", "", "Redis 服务器地址 (逗号分隔多个地址, 覆盖 REDIS_ADDRS)")  
-	redisPassword = flag.String("redis-password", "", "Redis 服务器密码 (覆盖 REDIS_PASSWORD)")
+	redisPassword = flag.String("redis-password", "", "Redis 服务器密码 (覆盖 REDIS_PASSWORD)")  
 	phase   = flag.String("phase", "", "部署阶段: local, development, production (覆盖 PHASE)")  
 	debug   = flag.Bool("debug", false, "启用调试模式 (覆盖 DEBUG)")  
 	logPath = flag.String("log", "", "日志文件路径 (覆盖 LOG_PATH)")  
@@ -38,7 +42,7 @@ func main() {
 	}  
 	if *redisPassword != "" {  
 		os.Setenv("REDIS_PASSWORD", *redisPassword)  
-	} 
+	}  
 	if *phase != "" {  
 		os.Setenv("PHASE", *phase)  
 	}  
