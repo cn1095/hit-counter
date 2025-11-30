@@ -193,23 +193,28 @@ func main() {
     println("START GO WASM ", phase)  
       
     // 动态获取当前域名  
-    currentDomain := js.Global().Get("window").Get("location").Get("host").String()  
+    window := js.Global().Get("window")  
+    location := window.Get("location")  
+    currentHost := location.Get("host").String()  
+    currentProtocol := location.Get("protocol").String()  
       
     if phase == "local" {  
-        defaultDomain = "localhost:8080"  
+        // 本地环境使用动态获取的主机  
+        defaultDomain = currentHost  
         defaultURL = fmt.Sprintf("http://%s", defaultDomain)  
         defaultWS = fmt.Sprintf("ws://%s/ws", defaultDomain)  
     } else {  
-        // 使用动态域名而不是硬编码  
-        if currentDomain != "" {  
-            defaultDomain = currentDomain  
+        // 生产环境也使用动态获取的主机  
+        defaultDomain = currentHost  
+        // 根据当前协议确定 HTTP/HTTPS  
+        if currentProtocol == "https:" {  
+            defaultURL = fmt.Sprintf("https://%s", defaultDomain)  
+            defaultWS = fmt.Sprintf("wss://%s/ws", defaultDomain)  
         } else {  
-            defaultDomain = "localhost:8080" // 默认值  
+            defaultURL = fmt.Sprintf("http://%s", defaultDomain)  
+            defaultWS = fmt.Sprintf("ws://%s/ws", defaultDomain)  
         }  
-        defaultURL = fmt.Sprintf("https://%s", defaultDomain)  
-        defaultWS = fmt.Sprintf("wss://%s/ws", defaultDomain)  
     }  
-      
     registerCallbacks()  
     c := make(chan struct{}, 0)  
     <-c  
