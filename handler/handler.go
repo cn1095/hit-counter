@@ -1,6 +1,7 @@
 package handler  
   
 import (  
+	"embed"  
 	"fmt"  
 	"html/template"  
 	"runtime"  
@@ -14,7 +15,6 @@ import (
 	"github.com/cn1095/hit-counter/internal"  
 	"github.com/go-redis/redis/v8"  
 	cache "github.com/patrickmn/go-cache"  
-	"github.com/cn1095/hit-counter"  // 导入 main 包  
 )  
   
 var (  
@@ -33,8 +33,8 @@ type Handler struct {
 	IconsList        []map[string]string  
 }  
   
-// NewHandler creates a handler object.  
-func NewHandler(redisAddr string) (*Handler, error) {  
+// NewHandler 创建 handler 对象  
+func NewHandler(redisAddr string, fs embed.FS) (*Handler, error) {  
 	if redisAddr == "" {  
 		return nil, fmt.Errorf("[错误] NewHandler %w", internal.ErrorEmptyParams)  
 	}  
@@ -78,14 +78,14 @@ func NewHandler(redisAddr string) (*Handler, error) {
 		return nil, fmt.Errorf("[错误] NewHandler %w", err)  
 	}  
   
-	// template - 使用嵌入文件系统  
+	// template - 使用传入的嵌入文件系统  
 	indexName := "index.html"  
 	if env.GetPhase() == "local" {  
 		indexName = "local.html"  
 	}  
   
-	// 从嵌入的文件系统加载模板  
-	indexTemplate, err := template.ParseFS(hitcounter.EmbeddedFiles(), "view/"+indexName)  
+	// 从传入的文件系统加载模板  
+	indexTemplate, err := template.ParseFS(fs, "view/"+indexName)  
 	if err != nil {  
 		return nil, fmt.Errorf("[错误] NewHandler %w", err)  
 	}  
