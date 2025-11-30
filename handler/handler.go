@@ -34,7 +34,7 @@ type Handler struct {
 }  
   
 // NewHandler 创建 handler 对象  
-func NewHandler(redisAddr string, fs embed.FS) (*Handler, error) {  
+func NewHandler(redisAddr, redisPassword string, fs embed.FS) (*Handler, error) { 
 	if redisAddr == "" {  
 		return nil, fmt.Errorf("[错误] NewHandler %w", internal.ErrorEmptyParams)  
 	}  
@@ -44,7 +44,7 @@ func NewHandler(redisAddr string, fs embed.FS) (*Handler, error) {
   
 	redisClient := redis.NewClient(&redis.Options{  
 		Addr:         redisAddr,  
-		Password:     env.GetRedisPassword(),  // 使用环境变量中的密码  
+		Password:     redisPassword, 
 		DB:           0,  
 		MaxRetries:   1,  
 		MinIdleConns: runtime.NumCPU() * 3,  
