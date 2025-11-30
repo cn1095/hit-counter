@@ -11,6 +11,7 @@ var (
 	logPath   = os.Getenv("LOG_PATH")
 	sentryDsn = os.Getenv("SENTRY_DSN")
 	phase     = os.Getenv("PHASE")
+	redisPassword = os.Getenv("REDIS_PASSWORD")
 )
 
 var (
@@ -70,4 +71,8 @@ func GetForceHTTPS() bool {
 // GetPhase returns PHASE global environment.
 func GetPhase() string {
 	return phase
+}
+
+func GetRedisPassword() string {  
+	return redisPassword  
 }
