@@ -27,15 +27,6 @@ func AddRoute(e *echo.Echo, redisAddr string) error {
 		return fmt.Errorf("[错误] AddRoute %w", err)
 	}
 
-	// error handler
-	e.HTTPErrorHandler = h.Error
-	subFS, err := fs.Sub(EmbeddedFiles, "public")
-	if err != nil {
-		return fmt.Errorf("[错误] 嵌入public失败: %w", err)
-	}
-	// static
-	e.Static("/", echo.MustSubFS(subFS))
-
 	// wasm
 	e.GET("/hits.wasm", h.Wasm)
 
