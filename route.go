@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"net/http"
 	"strconv"
-	"io/fs"
 
 	"github.com/cn1095/hit-counter/handler"
 	api_handler "github.com/cn1095/hit-counter/handler/api"
