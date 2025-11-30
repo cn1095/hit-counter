@@ -189,42 +189,18 @@ func connectWebsocket() {
 	}))
 }
 
-func main() {  
-    println("START GO WASM ", phase)  
-      
-    // 动态获取当前域名  
-    window := js.Global().Get("window")  
-    location := window.Get("location")  
-    hostname := location.Get("hostname").String()  
-    port := location.Get("port").String()  
-    protocol := location.Get("protocol").String()  
-      
-    // 构建完整主机  
-    currentHost := hostname  
-    if port != "" {  
-        currentHost = hostname + ":" + port  
-    }  
-      
-    if phase == "local" {  
-        defaultDomain = currentHost  
-        defaultURL = fmt.Sprintf("http://%s", defaultDomain)  
-        defaultWS = fmt.Sprintf("ws://%s/ws", defaultDomain)  
-    } else {  
-        defaultDomain = currentHost  
-        if protocol == "https:" {  
-            defaultURL = fmt.Sprintf("https://%s", defaultDomain)  
-            defaultWS = fmt.Sprintf("wss://%s/ws", defaultDomain)  
-        } else {  
-            defaultURL = fmt.Sprintf("http://%s", defaultDomain)  
-            defaultWS = fmt.Sprintf("ws://%s/ws", defaultDomain)  
-        }  
-    }  
-      
-    // 添加调试输出  
-    println("WebSocket URL:", defaultWS)  
-    println("Host:", currentHost, "Protocol:", protocol)  
-      
-    registerCallbacks()  
-    c := make(chan struct{}, 0)  
-    <-c  
+func main() {
+	println("START GO WASM ", phase)
+	if phase == "local" {
+		defaultDomain = "localhost:8080"
+		defaultURL = fmt.Sprintf("http://%s", defaultDomain)
+		defaultWS = fmt.Sprintf("ws://%s/ws", defaultDomain)
+	} else {
+		defaultDomain = "你的域名"
+		defaultURL = fmt.Sprintf("https://%s", defaultDomain)
+		defaultWS = fmt.Sprintf("wss://%s/ws", defaultDomain)
+	}
+	registerCallbacks()
+	c := make(chan struct{}, 0)
+	<-c
 }
