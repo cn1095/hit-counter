@@ -11,13 +11,13 @@ import (
 	"github.com/labstack/echo/v4"  
 )  
   
-func AddRoute(e *echo.Echo, redisAddr string) error {  
+func AddRoute(e *echo.Echo, redisAddr, redisPassword string) error { 
 	if e == nil {  
 		return fmt.Errorf("[错误] AddRoute参数为空")  
 	}  
   
 	// 传递 embeddedFiles 给 NewHandler  
-	h, err := handler.NewHandler(redisAddr, embeddedFiles)  
+	h, err := handler.NewHandler(redisAddr, redisPassword, embeddedFiles)  
 	if err != nil {  
 		return fmt.Errorf("[错误] AddRoute %w", err)  
 	}  
