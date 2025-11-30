@@ -56,6 +56,15 @@ func getConfig() *Config {
 		LogPath:       *logPath,  
 		SentryDSN:     *sentry,  
 	}  
+
+	// 修复地址格式：如果只提供了端口号，自动添加冒号前缀  
+    if config.Address != "" && !strings.HasPrefix(config.Address, ":") {  
+        if !strings.Contains(config.Address, ":") {  
+            // 纯端口号，添加前缀  
+            config.Address = ":" + config.Address  
+        }  
+        // 如果包含冒号，假设是完整地址（如 localhost:8080），不做修改  
+    }
   
 	// 只有在命令行参数为空时才回退到环境变量  
 	if config.RedisAddr == "" {  
