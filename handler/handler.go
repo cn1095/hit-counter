@@ -44,7 +44,7 @@ func NewHandler(redisAddr string) (*Handler, error) {
 
 	redisClient := redis.NewClient(&redis.Options{
 		Addr:         redisAddr,
-		Password:     "",
+		Password:     env.GetRedisPassword(),
 		DB:           0,
 		MaxRetries:   1,
 		MinIdleConns: runtime.NumCPU() * 3,
