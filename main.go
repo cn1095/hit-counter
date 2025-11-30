@@ -6,6 +6,7 @@ import (
 	"log"  
 	"os"  
 	"runtime"  
+	"strings"
   
 	"github.com/cn1095/hit-counter/internal"  
 	"path/filepath"  
@@ -100,17 +101,20 @@ func main() {
 	flag.Parse()  
   
 	config := getConfig()  
+	log.Printf("配置加载完成: Redis=%s, 调试模式=%v", config.RedisAddr, config.Debug)  
   
 	runtime.GOMAXPROCS(runtime.NumCPU())  
   
 	// 初始化 sentry，使用配置中的值  
-	if config.SentryDSN != "" {  
-    	name, _ := os.Hostname()  
-    	if err := internal.InitSentry(config.SentryDSN, config.Phase, config.Phase,  
-        	name, true, config.Debug); err != nil {  
-        	log.Println(err)  
-    	}  
-	}
+	name, _ := os.Hostname()  
+    if config.SentryDSN != "" {  
+        if err := internal.InitSentry(config.SentryDSN, config.Phase, config.Phase,  
+            name, true, config.Debug); err != nil {  
+            log.Printf("Sentry 初始化失败: %v", err)  
+        } else {  
+            log.Printf("Sentry 初始化成功")  
+        }  
+    } 
   
 	e := echo.New()  
   
@@ -141,15 +145,21 @@ func main() {
 	if config.RedisAddr == "" {  
 		log.Panic("Redis 地址未设置，请使用 -redis 参数或设置 REDIS_ADDRS 环境变量")  
 	}  
+	log.Printf("Redis 连接配置: %s", config.RedisAddr)
   
 	// 添加路由，直接使用配置中的 Redis 地址  
 	if err := AddRoute(e, config.RedisAddr, config.RedisPassword); err != nil {  
     	log.Panic(err)  
 	} 
+	log.Printf("正在启动服务器，地址: %s, TLS: %v", config.Address, config.TLS)  
   
 	if config.TLS {  
-		e.StartAutoTLS(config.Address)  
-	} else {  
-		e.Start(config.Address)  
-	}  
+        if err := e.StartAutoTLS(config.Address); err != nil {  
+            log.Panicf("TLS 服务器启动失败: %v", err)  
+        }  
+    } else {  
+        if err := e.Start(config.Address); err != nil {  
+            log.Panicf("服务器启动失败: %v", err)  
+        }  
+    }  
 }
