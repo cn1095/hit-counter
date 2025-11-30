@@ -187,7 +187,7 @@
                 </div>
                 <select id="badge_edge_flat" class="custom-select" onchange="refreshBadge()">
                     <option value="true">扁平</option>
-                    <option value="false" selected>圆弧</option>
+                    <option value="false" selected>圆角</option>
                 </select>
             </div>
             <div class="col-lg-4 input-group mb-3">
@@ -254,7 +254,7 @@
         <br/>
         <div class="show-rank-content row mb-5">
             <div class="col-lg-8 mx-auto">
-                <h4 class="mb-0 rank-subtitle"> <b>TOP 10</b>使用HITS的github项目.</h4>
+                <h4 class="mb-0 rank-subtitle"> <b>前 10 个</b>使用HITS的站点</h4>
                 <br/>
                 <div id="rank_view">
                     {{range .Ranks}}
