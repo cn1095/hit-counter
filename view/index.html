@@ -99,13 +99,13 @@
                     <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#badge">生成徽章</a>
                 </li>
                 <li class="nav-item mx-0 mx-lg-1">
-                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#rank">显示排名</a>
+                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#rank">站点排名</a>
                 </li>
                 <li class="nav-item mx-0 mx-lg-1">
-                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#history">显示历史</a>
+                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#history">历史记录</a>
                 </li>
                 <li class="nav-item mx-0 mx-lg-1">
-                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#stream">显示流</a>
+                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#stream">实时访问</a>
                 </li>
             </ul>
         </div>
@@ -138,7 +138,7 @@
                                required="required" data-validation-required-message="请输入您的网站或github"
                                value="https://github.com/用户名/仓库名" onkeyup="refreshBadge()">
                         <small class="form-text text-muted url-small">
-                            输入您的URL，然后您将获得生成的MARKDOWN和HTML链接.
+                            输入您的URL，您将获得生成的MARKDOWN和HTML链接
                         </small>
                     </div>
                 </form>
@@ -187,7 +187,7 @@
                 </div>
                 <select id="badge_edge_flat" class="custom-select" onchange="refreshBadge()">
                     <option value="true">扁平</option>
-                    <option value="false" selected>圆弧</option>
+                    <option value="false" selected>圆角</option>
                 </select>
             </div>
             <div class="col-lg-4 input-group mb-3">
@@ -250,11 +250,11 @@
 <!-- Rank Section -->
 <section class="secondary-bg text-white mb-0" id="rank">
     <div class="container">
-        <h2 class="text-center text-uppercase text-secondary mb-5 flex-cetner">显示排名<i class="material-icons title-icon">military_tech</i></h2>
+        <h2 class="text-center text-uppercase text-secondary mb-5 flex-cetner">站点排名<i class="material-icons title-icon">military_tech</i></h2>
         <br/>
         <div class="show-rank-content row">
             <div class="col-lg-8 mx-auto">
-                <h4 class="mb-0 rank-subtitle"> <b>前 10</b> 使用HITS的github项目.</h4>
+                <h4 class="mb-0 rank-subtitle"> <b>前 10 个</b> 使用HITS的站点</h4>
                 <br/>
                 <div id="rank_view">
                     {{range .Ranks}}
@@ -269,9 +269,9 @@
 <!--History Section -->
 <section id="history">
     <div class="container">
-        <h2 class="text-center text-uppercase text-secondary mb-2 flex-cetner">显示历史记录<i class="material-icons title-icon">show_chart</i></h2>
+        <h2 class="text-center text-uppercase text-secondary mb-2 flex-cetner">历史记录<i class="material-icons title-icon">show_chart</i></h2>
         <br/>
-        <h4 class="text-center text-uppercase text-secondary-light mb-5">最近2个月的每日点击历史</h4>
+        <h4 class="text-center text-uppercase text-secondary-light mb-5">最近2个月的每日点击量</h4>
         <br/>
         <br/>
         <div class="row">
@@ -281,12 +281,12 @@
                         <label class="url-label" for="history_url">目标站点</label>
                         <input class="form-control url-input" id="history_url" type="text" placeholder="URL" required="required" data-validation-required-message="请输入您的网站或github" value="https://github.com/用户名/仓库名">
                         <small class="form-text text-muted url-small">
-                            输入要获取历史记录的URL
+                             请输入需要查询历史记录的站点
                         </small>
                     </div>
                     <br/><br/>
                     <div class="text-center">
-                        <button id="history_button" class="btn btn-primary btn-lg" onclick="showGraph()">显示图表</button>
+                        <button id="history_button" class="btn btn-primary btn-lg" onclick="showGraph()">查询</button>
                     </div>
                     <br/><br/>
 
@@ -297,7 +297,7 @@
     <div class="container container-mobile-fill">
         <div id="history_view">
             <div class="wating-graph ">
-                按 <b class="text-primary">显示图表</b>
+                <b class="text-primary">查询</b>
             </div>
         </div>
     </div>
@@ -306,9 +306,9 @@
 <!--Stream Section -->
 <section class="secondary-bg text-white mb-0" id="stream">
     <div class="container">
-        <h2 class="text-center text-uppercase text-secondary mb-2 flex-cetner">显示流<i class="material-icons title-icon">history</i></h2>
+        <h2 class="text-center text-uppercase text-secondary mb-2 flex-cetner">实时记录<i class="material-icons title-icon">history</i></h2>
         <br/>
-        <h4 class="text-center text-uppercase text-secondary-light mb-5 font-weight-light">它显示了HITS目前跟踪的项目.</h4>
+        <h4 class="text-center text-uppercase text-secondary-light mb-5 font-weight-light">使用HITS的访问站点的最新记录</h4>
         <br/>
         <div class="row">
             <div class="col-lg-8 mx-auto alert stream-view-content" id="stream_view">
