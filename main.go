@@ -132,9 +132,9 @@ func main() {
 	}  
   
 	// 添加路由，直接使用配置中的 Redis 地址  
-	if err := AddRoute(e, config.RedisAddr); err != nil {  
-		log.Panic(err)  
-	}  
+	if err := AddRoute(e, config.RedisAddr, config.RedisPassword); err != nil {  
+    	log.Panic(err)  
+	} 
   
 	if config.TLS {  
 		e.StartAutoTLS(config.Address)  
