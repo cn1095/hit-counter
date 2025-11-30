@@ -503,21 +503,6 @@
 </script>
 <script>  
 $(document).ready(function() {  
-    $('.js-scroll-trigger').click(function(e) {  
-        var target = $(this).attr('href');  
-        var $target = $(target);  
-          
-        if ($target.length && $target.offset() !== undefined) {  
-            e.preventDefault();  
-            $('html, body').stop().animate({  
-                scrollTop: $target.offset().top - 50  
-            }, 1000);  
-        }  
-    });  
-});  
-</script>
-<script>  
-$(document).ready(function() {  
     // 动态生成默认示例  
     const currentDomain = window.location.origin;  
     const defaultUrl = "https://github.com/gjbae1212/hit-counter";  
@@ -537,6 +522,21 @@ $(document).ready(function() {
       
     // 初始化徽章预览  
     refreshBadge();  
+});  
+</script>
+<script>  
+$(document).ready(function() {  
+    $('.js-scroll-trigger').click(function(e) {  
+        var target = $(this).attr('href');  
+        var $target = $(target);  
+          
+        if ($target.length && $target.offset() !== undefined) {  
+            e.preventDefault();  
+            $('html, body').stop().animate({  
+                scrollTop: $target.offset().top - 50  
+            }, 1000);  
+        }  
+    });  
 });  
 </script>
 </body>
