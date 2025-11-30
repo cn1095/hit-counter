@@ -95,11 +95,13 @@ func main() {
 	runtime.GOMAXPROCS(runtime.NumCPU())  
   
 	// 初始化 sentry，使用配置中的值  
-	name, _ := os.Hostname()  
-	if err := internal.InitSentry(config.SentryDSN, config.Phase, config.Phase,  
-		name, true, config.Debug); err != nil {  
-		log.Println(err)  
-	}  
+	if config.SentryDSN != "" {  
+    	name, _ := os.Hostname()  
+    	if err := internal.InitSentry(config.SentryDSN, config.Phase, config.Phase,  
+        	name, true, config.Debug); err != nil {  
+        	log.Println(err)  
+    	}  
+	}
   
 	e := echo.New()  
   
