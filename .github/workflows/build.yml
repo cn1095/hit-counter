@@ -135,7 +135,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: hit-${{ matrix.NAME }}
-          path: |
-            ./hit-${{ matrix.NAME }}
-            ./view/hits.wasm
-            ./public/wasm_exec.js
+          path: ./hit-${{ matrix.NAME }}
