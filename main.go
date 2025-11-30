@@ -6,8 +6,6 @@ import (
 	"log"  
 	"os"  
 	"runtime"  
-	"strconv"  
-	"strings"  
   
 	"github.com/cn1095/hit-counter/internal"  
 	"path/filepath"  
