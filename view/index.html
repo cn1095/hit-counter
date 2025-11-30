@@ -477,7 +477,7 @@
 
     function fetchIconList(){
         if(!iconListPromise){
-            iconListPromise = fetch(`/icon/all.json`)
+            iconListPromise = fetch(`${window.location.origin}/icon/all.json`)
                 .then(res => res.json())
         }
         return iconListPromise
