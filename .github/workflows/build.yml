@@ -132,4 +132,4 @@ jobs:
           name: hit-${{ matrix.NAME }}
           path: |
             ./hit-${{ matrix.NAME }}
-            ./wasm/
+            ./view/hits.wasm
