@@ -188,6 +188,8 @@
                 <h7 class="text-uppercase text-secondary mb-0">MARKDOWN</h7><br />
                 <div class="text-box-container">
                     <p class="text-box" id="badge_markdown">
+                        <!-- mark down-->
+                        [![Hits](https://hits.5670567.xyz/api/count/incr/badge.svg?url=https%3A%2F%2Fhits.5670567.xyz&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=%E8%AE%BF%E9%97%AE%E7%BB%9F%E8%AE%A1&edge_flat=false)](https://hits.5670567.xyz)
                     </p>
                     <button onclick="copyToClipboard('#badge_markdown')" class="btn copy-button">复制</button>
                 </div>
@@ -197,6 +199,8 @@
                     <h7 class="text-center text-uppercase text-secondary mb-0">HTML 链接</h7><br />
                     <div class="text-box-container">
                         <p class="text-box" id="badge_link">
+                            <!-- badge link-->
+                            &lt;a href="https://hits.5670567.xyz"&gt;&lt;img src="https://hits.5670567.xyz/api/count/incr/badge.svg?url=https%3A%2F%2Fhits.5670567.xyz&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=%E8%AE%BF%E9%97%AE%E7%BB%9F%E8%AE%A1&edge_flat=false"/&gt;&lt;/a&gt;
                         </p>
                         <button onclick="copyToClipboard('#badge_link');" class="btn copy-button">复制</button>
                     </div>
@@ -206,6 +210,8 @@
                     <h7 class="text-center text-uppercase text-secondary mb-0">嵌入URL(NOTION)</h7><br />
                     <div class="text-box-container">
                         <p class="text-box" id="embed_link">
+                            <!-- embed url-->
+                            https://hits.5670567.xyz/api/count/incr/badge.svg?url=https%3A%2F%2Fhits.5670567.xyz&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=%E8%AE%BF%E9%97%AE%E7%BB%9F%E8%AE%A1&edge_flat=false
                         </p>
                         <button onclick="copyToClipboard('#embed_link');" class="btn copy-button">复制</button>
                     </div>
@@ -499,29 +505,6 @@
         $(".icon-selector").addClass("hidden");
     }
     // Icon Selector End
-</script>
-<script>  
-$(document).ready(function() {  
-    // 动态生成默认示例  
-    const currentDomain = window.location.origin;  
-    const defaultUrl = "https://github.com/gjbae1212/hit-counter";  
-    const encodedUrl = encodeURIComponent(defaultUrl);  
-    const badgeUrl = `${currentDomain}/api/count/incr/badge.svg?url=${encodedUrl}`;  
-      
-    // 生成 Markdown 格式  
-    const markdownExample = `[![Hits](${badgeUrl})](${currentDomain})`;  
-    document.getElementById('badge_markdown').innerHTML = markdownExample;  
-      
-    // 生成 HTML 链接格式  
-    const htmlExample = `&lt;a href="${currentDomain}"&gt;&lt;img src="${badgeUrl}"/&gt;&lt;/a&gt;`;  
-    document.getElementById('badge_link').innerHTML = htmlExample;  
-      
-    // 生成嵌入 URL 格式  
-    document.getElementById('embed_link').innerHTML = badgeUrl;  
-      
-    // 初始化徽章预览  
-    refreshBadge();  
-});  
 </script>
 </body>
 
