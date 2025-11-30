@@ -90,6 +90,7 @@ jobs:
         run: |
             sudo timedatectl set-timezone "Asia/Shanghai"
             go mod tidy
+            GOOS=js GOARCH=wasm go build -o view/hits.wasm ./wasm/
             export CGO_ENABLED=0
             export GOOS=$GOos
             export GOARCH=$GOarch
@@ -129,4 +130,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: hit-${{ matrix.NAME }}
-          path: hit-${{ matrix.NAME }}
+          path: |
+            ./hit-${{ matrix.NAME }}
+            ./wasm/
