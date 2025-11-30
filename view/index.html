@@ -306,7 +306,22 @@
     </div>
 </footer>
 
-
+<script>  
+$(document).ready(function() {  
+    $('.js-scroll-trigger').click(function(e) {  
+        var target = $(this).attr('href');  
+        var $target = $(target);  
+          
+        // 检查目标元素是否存在且可见  
+        if ($target.length && $target.offset() !== undefined) {  
+            e.preventDefault();  
+            $('html, body').stop().animate({  
+                scrollTop: $target.offset().top - 50  
+            }, 1000);  
+        }  
+    });  
+});  
+</script>
 
 <!-- Bootstrap core JavaScript -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
