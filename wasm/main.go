@@ -190,17 +190,44 @@ func connectWebsocket() {
 }
 
 func main() {
+	// 打印当前阶段
 	println("START GO WASM ", phase)
-	if phase == "local" {
-		defaultDomain = "localhost:8080"
-		defaultURL = fmt.Sprintf("http://%s", defaultDomain)
-		defaultWS = fmt.Sprintf("ws://%s/ws", defaultDomain)
+
+	// 从浏览器动态获取当前页面域名、协议等信息
+	location := js.Global().Get("window").Get("location")
+
+	// 获取协议，例如 "http:" 或 "https:"
+	protocol := location.Get("protocol").String()
+
+	// 获取 host（包含端口），例如 "example.com:8080"
+	host := location.Get("host").String()
+
+	// 获取 hostname（不含端口），例如 "example.com"
+	hostname := location.Get("hostname").String()
+
+	// 获取 port，例如 "8080"
+	port := location.Get("port").String()
+
+	// 根据协议和 host 生成 API 地址
+	if protocol == "http:" {
+		defaultURL = "http://" + host
+		defaultWS = "ws://" + host + "/ws"
 	} else {
-		defaultDomain = "你的域名"
-		defaultURL = fmt.Sprintf("https://%s", defaultDomain)
-		defaultWS = fmt.Sprintf("wss://%s/ws", defaultDomain)
+		defaultURL = "https://" + host
+		defaultWS = "wss://" + host + "/ws"
 	}
+
+	// 也可以仅用 hostname，按需选择
+	_ = hostname
+	_ = port
+
+	// 设置 defaultDomain 为动态获取的 host
+	defaultDomain = host
+
+	// 注册回调函数
 	registerCallbacks()
+
+	// 阻塞 main，让 WebAssembly 一直运行
 	c := make(chan struct{}, 0)
 	<-c
 }
