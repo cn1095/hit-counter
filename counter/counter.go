@@ -47,7 +47,7 @@ func NewCounter(opts ...Option) (Counter, error) {
 	if c.redisClient == nil {
 		c.redisClient = redis.NewClient(&redis.Options{
 			Addr:       "localhost:6379",
-			Password:   "",
+			Password:   env.GetRedisPassword(),
 			DB:         0,
 			MaxRetries: 1,
 		})
