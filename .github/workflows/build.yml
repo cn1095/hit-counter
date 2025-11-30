@@ -73,16 +73,19 @@ jobs:
       NAME: ${{ matrix.NAME }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
+        
       - name: 获取最新Go
         run: |
           latest_version=$(curl -L -k -s https://golang.org/dl/?mode=json | grep -m 1 -o '"version": "[^"]*' | sed 's/"version": "//' | tr -d 'go" ')
           echo "go版本=$latest_version"
           echo "gotag=$latest_version" >> $GITHUB_ENV
+          
       - name: 安装go
         uses: actions/setup-go@v5
         with:
           go-version: ${{ env.gotag }}
+          
       - name: 开始编译
         run: |
             sudo timedatectl set-timezone "Asia/Shanghai"
@@ -98,7 +101,7 @@ jobs:
             mv -f hit-counter hit-${NAME}
             echo "build_time=$(date '+%Y年%m月%d日%H:%M:%S' | jq -sRr @uri)" >> $GITHUB_ENV
             echo "build_tag=$(date '+%Y-%m-%d')" >> $GITHUB_ENV
-            hit -h || true
+            hit-${NAME} -h || true
       - name: 安装 UPX
         if: github.event.inputs.upx == 'true'
         uses: crazy-max/ghaction-upx@v3
