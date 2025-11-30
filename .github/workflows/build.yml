@@ -90,9 +90,10 @@ jobs:
         run: |
             sudo timedatectl set-timezone "Asia/Shanghai"
             go mod tidy
-            #GOOS=js GOARCH=wasm go build -trimpath -ldflags="-s -w" -o view/hits.wasm ./wasm/main.go  
-            #gzip view/hits.wasm  
-            #mv view/hits.wasm.gz view/hits.wasm
+            rm -rf view/hits.wasm public/wasm_exec.js
+            GOOS=js GOARCH=wasm go build -trimpath -ldflags="-s -w" -o view/hits.wasm ./wasm/main.go  
+            cp "$(go env GOROOT)/misc/wasm/wasm_exec.js" ./public/wasm_exec.js
+            
             export CGO_ENABLED=0
             export GOOS=$GOos
             export GOARCH=$GOarch
@@ -135,3 +136,4 @@ jobs:
           path: |
             ./hit-${{ matrix.NAME }}
             ./view/hits.wasm
+            ./public/wasm_exec.js
