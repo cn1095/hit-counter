@@ -189,18 +189,28 @@ func connectWebsocket() {
 	}))
 }
 
-func main() {
-	println("START GO WASM ", phase)
-	if phase == "local" {
-		defaultDomain = "localhost:8080"
-		defaultURL = fmt.Sprintf("http://%s", defaultDomain)
-		defaultWS = fmt.Sprintf("ws://%s/ws", defaultDomain)
-	} else {
-		defaultDomain = "你的域名"
-		defaultURL = fmt.Sprintf("https://%s", defaultDomain)
-		defaultWS = fmt.Sprintf("wss://%s/ws", defaultDomain)
-	}
-	registerCallbacks()
-	c := make(chan struct{}, 0)
-	<-c
+func main() {  
+    println("START GO WASM ", phase)  
+      
+    // 动态获取当前域名  
+    currentDomain := js.Global().Get("window").Get("location").Get("host").String()  
+      
+    if phase == "local" {  
+        defaultDomain = "localhost:8080"  
+        defaultURL = fmt.Sprintf("http://%s", defaultDomain)  
+        defaultWS = fmt.Sprintf("ws://%s/ws", defaultDomain)  
+    } else {  
+        // 使用动态域名而不是硬编码  
+        if currentDomain != "" {  
+            defaultDomain = currentDomain  
+        } else {  
+            defaultDomain = "localhost:8080" // 默认值  
+        }  
+        defaultURL = fmt.Sprintf("https://%s", defaultDomain)  
+        defaultWS = fmt.Sprintf("wss://%s/ws", defaultDomain)  
+    }  
+      
+    registerCallbacks()  
+    c := make(chan struct{}, 0)  
+    <-c  
 }
