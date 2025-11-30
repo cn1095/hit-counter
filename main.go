@@ -145,7 +145,6 @@ func main() {
 	if config.RedisAddr == "" {  
 		log.Panic("Redis 地址未设置，请使用 -redis 参数或设置 REDIS_ADDRS 环境变量")  
 	}  
-	log.Printf("Redis 连接配置: %s", config.RedisAddr)
   
 	// 添加路由，直接使用配置中的 Redis 地址  
 	if err := AddRoute(e, config.RedisAddr, config.RedisPassword); err != nil {  
