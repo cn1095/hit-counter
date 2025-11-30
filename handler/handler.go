@@ -79,9 +79,9 @@ func NewHandler(redisAddr string) (*Handler, error) {
 	}
 
 	// template
-	indexName := "index.html"
-	if env.GetPhase() == "local" {
-		indexName = "local.html"
+	indexName := "local.html"  
+	if env.GetPhase() == "production" && env.GetPhase() != "local" {  
+    	indexName = "index.html"  
 	}
 
 	indexTemplate, err := template.ParseFiles(filepath.Join(internal.GetRoot(), "view", indexName))
