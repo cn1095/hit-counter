@@ -22,6 +22,7 @@ var (
 	address = flag.String("port", ":8080", "服务器监听地址和端口 (例如: :8080, 0.0.0.0:8080)")  
 	tls     = flag.Bool("tls", false, "启用 Let's Encrypt 自动 TLS")  
 	redis   = flag.String("redis", "", "Redis 服务器地址 (逗号分隔多个地址, 覆盖 REDIS_ADDRS)")  
+	redisPassword = flag.String("redis-password", "", "Redis 服务器密码 (覆盖 REDIS_PASSWORD)")
 	phase   = flag.String("phase", "", "部署阶段: local, development, production (覆盖 PHASE)")  
 	debug   = flag.Bool("debug", false, "启用调试模式 (覆盖 DEBUG)")  
 	logPath = flag.String("log", "", "日志文件路径 (覆盖 LOG_PATH)")  
@@ -35,6 +36,9 @@ func main() {
 	if *redis != "" {  
 		os.Setenv("REDIS_ADDRS", *redis)  
 	}  
+	if *redisPassword != "" {  
+		os.Setenv("REDIS_PASSWORD", *redisPassword)  
+	} 
 	if *phase != "" {  
 		os.Setenv("PHASE", *phase)  
 	}  
